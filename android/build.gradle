@@ -19,7 +19,7 @@ android {
     }
     defaultConfig {
         applicationId "com.mygdx.game"
-        minSdkVersion 9
+        minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -132,7 +132,5 @@ idea {
         }
     }
 }
-    dependencies {
-  implementation
-'com.google.firebase:firebase-database:11.0.4'
-}apply plugin: 'com.google.gms.google-services'
+
+apply plugin: 'com.google.gms.google-services'

@@ -58,6 +58,9 @@ project(":android") {
     configurations { natives }
 
     dependencies {
+        compile "de.tomgrill.gdxfirebase:gdx-firebase-core:0.0.4-SNAPSHOT"
+        compile "de.tomgrill.gdxfirebase:gdx-firebase-android:0.0.4-SNAPSHOT"
+        compile "de.tomgrill.gdxfirebase:gdx-firebase-desktop:0.0.4-SNAPSHOT"
         compile project(":core")
         compile "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi"
