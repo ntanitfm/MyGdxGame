@@ -114,7 +114,7 @@ project(":core") {
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
-        
+        compile 'com.firebase:firebase-client:1.0.16'
     }
 }
 
