@@ -13,7 +13,7 @@ import java.util.List;
  * Created by ntani on 2017/11/07.
  */
 
-public interface Dbo {
+public interface DatabaseOperator {
     void write(ResultData res);
     List<ResultData> read();
 }

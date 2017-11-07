@@ -6,7 +6,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.mygdx.game.item.ResultData;
-import com.mygdx.game.main.Dbo;
+import com.mygdx.game.main.DatabaseOperator;
 
 import org.json.JSONObject;
 
@@ -26,7 +26,7 @@ import java.util.List;
  * Created by ntani on 2017/11/07.
  */
 
-public class FirebaseOperator implements Dbo {
+public class FirebaseOperator implements DatabaseOperator {
     private String TAG = FirebaseOperator.class.getSimpleName();
     private DatabaseReference dbRef;
     private String PATH;
