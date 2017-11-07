@@ -4,7 +4,7 @@ import com.badlogic.gdx.Game;
 import com.mygdx.game.title.TitleScreen;
 
 public class MyGdxGame extends Game {
-	DatabaseOperator dbo;
+	public DatabaseOperator dbo;
 
 	public MyGdxGame(DatabaseOperator dbo) {this.dbo = dbo;}
 

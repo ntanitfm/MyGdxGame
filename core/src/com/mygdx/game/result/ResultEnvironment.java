@@ -1,5 +1,6 @@
 package com.mygdx.game.result;
 import com.mygdx.game.item.ResultData;
+import com.mygdx.game.main.DatabaseOperator;
 
 /**
  * Created by ntani on 2017/11/01.
@@ -8,10 +9,11 @@ import com.mygdx.game.item.ResultData;
 class ResultEnvironment {
     String mode;
     long time;
+    DatabaseOperator dbo;
     ResultData rd;
-    ResultEnvironment(String gameMode, long elapsedTime) {
+    ResultEnvironment(String gameMode, long elapsedTime, DatabaseOperator dbo) {
         this.mode = gameMode;
         this.time = elapsedTime;
-        rd = new ResultData(mode, time);
+        this.dbo = dbo;
     }
 }
