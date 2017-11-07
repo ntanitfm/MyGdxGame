@@ -5,8 +5,10 @@ import com.mygdx.game.item.ResultData;
 import java.util.List;
 
 /**
- * データを保存したり取得したりする
- * プラットフォ無に依存しない
+ * DataBaseOperator
+ *
+ * データを保存したり取得したりするための
+ * 各プラットフォームに依存しない
  * 抽象化されたインターフェイス
  * Created by ntani on 2017/11/07.
  */

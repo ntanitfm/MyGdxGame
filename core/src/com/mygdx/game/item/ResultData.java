@@ -10,6 +10,10 @@ public class ResultData {
     public long time;
     public String name;
 
+    public ResultData() {
+        // Firebase用の空のコンストラクタ
+    }
+
     public ResultData(String mode, long time) {
         this.mode = mode;
         this.name = "NameLess";
@@ -20,5 +24,30 @@ public class ResultData {
         this.mode = mode;
         this.name = name;
         this.time = time;
+    }
+
+    // Firebase用のGetter, Setter
+    public String getMode() {
+        return mode;
+    }
+
+    public void setMode(String mode) {
+        this.mode = mode;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
