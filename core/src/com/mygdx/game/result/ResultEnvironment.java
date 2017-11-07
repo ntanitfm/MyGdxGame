@@ -1,4 +1,5 @@
 package com.mygdx.game.result;
+import com.mygdx.game.item.ResultData;
 
 /**
  * Created by ntani on 2017/11/01.

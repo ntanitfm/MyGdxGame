@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.mygdx.game.item.Config;
-import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.main.MyGdxGame;
 import com.mygdx.game.play.PlayScreen;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.rotateBy;

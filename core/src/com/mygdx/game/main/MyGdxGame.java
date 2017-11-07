@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.mygdx.game.main;
 
 import com.badlogic.gdx.Game;
 import com.mygdx.game.title.TitleScreen;
