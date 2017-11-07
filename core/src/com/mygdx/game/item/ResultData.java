@@ -10,9 +10,8 @@ public class ResultData {
     public long time;
     public String name;
 
-    public ResultData() {
-        // Firebase用の空のコンストラクタ
-    }
+    // Firebase用の空のコンストラクタ
+    public ResultData() {}
 
     public ResultData(String mode, long time) {
         this.mode = mode;
@@ -49,5 +48,10 @@ public class ResultData {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "mode = " + mode + ", time = " + time + ", name = " + name;
     }
 }
