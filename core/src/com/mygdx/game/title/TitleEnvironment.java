@@ -16,7 +16,7 @@ import static com.mygdx.game.item.Config.*;
  */
 
 class TitleEnvironment {
-    private String TAG = "TitleEnvironment";
+    private String TAG = TitleEnvironment.class.getSimpleName();
     String GAMEMODE;
 
     TitleEnvironment() {

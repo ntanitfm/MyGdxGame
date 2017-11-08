@@ -20,7 +20,7 @@ import static com.mygdx.game.item.Config.skin;
  */
 
 class PlayEnvironmant {
-    private String TAG = "PlayEnvironmant";
+    private String TAG = PlayEnvironmant.class.getSimpleName();
     Table table;                    // 牌を並べるテーブル
     Pai slctedPai;                  // 選択された牌
     PlayJudgement jdg;              // 条件判定クラス

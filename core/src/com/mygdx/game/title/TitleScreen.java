@@ -18,7 +18,7 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.rotateBy;
  */
 
 public class TitleScreen extends ScreenAdapter {
-    String TAG = "TitleScreen";
+    String TAG = TitleScreen.class.getSimpleName();
     MyGdxGame game;
     Stage stage;
     TitleEnvironment env;

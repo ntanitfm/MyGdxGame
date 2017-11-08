@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
  */
 
 public class Pai {
-    private String TAG = "Pai";
+    private String TAG = Pai.class.getSimpleName();
     public Position position;
     public String type;
     public boolean invisible;    // 牌が除去されているか

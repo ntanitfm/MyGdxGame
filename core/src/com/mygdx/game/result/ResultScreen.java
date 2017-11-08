@@ -16,7 +16,7 @@ import com.mygdx.game.title.TitleScreen;
  */
 
 public class ResultScreen extends ScreenAdapter {
-    private String TAG = "ResultScreen";
+    private String TAG = ResultScreen.class.getSimpleName();
     MyGdxGame game;
     Stage stage;
     Label finishedTime;

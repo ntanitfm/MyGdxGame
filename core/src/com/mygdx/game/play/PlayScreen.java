@@ -18,7 +18,7 @@ import com.mygdx.game.title.TitleScreen;
  */
 
 public class PlayScreen extends ScreenAdapter {
-    String TAG = "PlayScreen";
+    String TAG = PlayScreen.class.getSimpleName();
     MyGdxGame game;
     Stage stage;
     Table playTable;

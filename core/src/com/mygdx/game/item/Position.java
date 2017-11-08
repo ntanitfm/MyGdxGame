@@ -8,7 +8,7 @@ import com.badlogic.gdx.Gdx;
  */
 
 public class Position {
-    private String TAG = "Position";
+    private String TAG = Position.class.getSimpleName();
     public int x;
     public int y;
 
