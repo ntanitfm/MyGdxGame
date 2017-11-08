@@ -4,6 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.mygdx.game.item.Config;
 import com.mygdx.game.main.MyGdxGame;
 
@@ -15,27 +18,28 @@ public class RankingScreen extends ScreenAdapter {
     private String TAG = RankingScreen.class.getSimpleName();
     MyGdxGame game;
     Stage stage;
-    String viewMode;
+    Label rankingMode;
+    TextButton goTitle;
+    Table rankTable;
     RankingEnvironment env;
 
-    // タイトルから
     public RankingScreen(MyGdxGame game) {
+        Gdx.app.log(TAG, "constractor from Title");
         this.game = game;
-        this.viewMode = Config.PLAY_LV1;
-    }
-    // 結果画面から
-    public RankingScreen(MyGdxGame game, String mode) {
-        this.game = game;
-        this.viewMode = mode;
+        this.env = new RankingEnvironment(game.dbo);
+        rankingMode = env.getModeLabel(Config.PLAY_LV1);
+        goTitle = env.getTitleButton(Config.TITL);
+//        rankTable = env.table;
     }
 
     @Override
     public void show() {
         Gdx.app.log(TAG, "show");
-        // 環境生成
-        env = new RankingEnvironment();
-        //  ステージ生成
+        // ステージ生成
         stage = new Stage(Config.viewport);
+        stage.addActor(rankingMode);
+        stage.addActor(goTitle);
+//        stage.addActor(rankTable);
         Gdx.input.setInputProcessor(stage);
     }
 

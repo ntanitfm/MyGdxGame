@@ -25,7 +25,7 @@ public class ResultScreen extends ScreenAdapter {
     Stage stage;
     Label finishedTime;
     TextField inputName;
-    TextButton goTop;
+    TextButton goTitle;
     TextButton goRanking;
     ResultEnvironment env;
 
@@ -35,7 +35,7 @@ public class ResultScreen extends ScreenAdapter {
         env = new ResultEnvironment(gameMode, elapsedTime, game.dbo);
         finishedTime = env.getTimeLabel();
 //        inputName = env.getInputField();
-        goTop = env.getTitleButton(Config.TITL);
+        goTitle = env.getTitleButton(Config.TITL);
         goRanking = env.getRankingButton(Config.RANK);
 
         // デバッグ
@@ -52,7 +52,7 @@ public class ResultScreen extends ScreenAdapter {
         stage = new Stage(Config.viewport);
         stage.addActor(finishedTime);
 //        stage.addActor(inputName);
-        stage.addActor(goTop);
+        stage.addActor(goTitle);
         stage.addActor(goRanking);
         Gdx.input.setInputProcessor(stage);
     }
@@ -65,7 +65,7 @@ public class ResultScreen extends ScreenAdapter {
                 game.setScreen(new TitleScreen(this.game));
             }
             if(mode.equals(Config.RANK)) {
-                game.setScreen(new RankingScreen(this.game, env.SCREEN_MODE));
+                game.setScreen(new RankingScreen(this.game));
             }
         }
     }

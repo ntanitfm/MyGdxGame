@@ -91,6 +91,17 @@ public class FirebaseOperator implements DatabaseOperator {
         return resultList;
     }
 
+    @Override
+    public List<ResultData> readByKey(String key) {
+        List<ResultData> retList = new ArrayList<>();
+        for(ResultData rd : read()) {
+            if(key.equals(rd.mode)) {
+                retList.add(rd);
+            }
+        }
+        return retList;
+    }
+
     // Firebaseから直接jsonの取得
     private void getJson() {
         Log.v(TAG, "getJson called");
