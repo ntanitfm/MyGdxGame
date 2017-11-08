@@ -15,6 +15,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -77,6 +79,15 @@ public class FirebaseOperator implements DatabaseOperator {
         catch (Exception e) {
             Log.v(TAG, "JSONオブジェクトの変換で失敗");
         }
+        // 並べ替え
+        Collections.sort(resultList, new Comparator<ResultData>() {
+            @Override
+            public int compare(ResultData o1, ResultData o2) {
+                long comp = o1.time - o2.time;
+                if(comp<0) return -1;
+                else return 1;
+            }
+        });
         return resultList;
     }
 
