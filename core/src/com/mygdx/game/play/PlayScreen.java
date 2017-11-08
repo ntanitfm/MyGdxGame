@@ -22,7 +22,8 @@ public class PlayScreen extends ScreenAdapter {
     MyGdxGame game;
     Stage stage;
     Table playTable;
-    TextButton backButton;
+    TextButton titleButton;
+    TextButton resultButton;
     PlayEnvironmant env;
     long startTime;
 
@@ -34,7 +35,8 @@ public class PlayScreen extends ScreenAdapter {
         // 環境設定読み込み(モード選択)
         env = new PlayEnvironmant(mode);
         // テキストボタン
-        backButton = env.getPlayBackButton(Config.BACK);
+        titleButton = env.getTitleButton(Config.TITL);
+        resultButton = env.getResultButton(Config.RSLT);
         // 牌テーブル読み込み
         playTable = env.table;
     }
@@ -45,7 +47,8 @@ public class PlayScreen extends ScreenAdapter {
         //  ステージ生成
         stage = new Stage(Config.viewport);
         Gdx.input.setInputProcessor(stage);
-        stage.addActor(backButton);
+        stage.addActor(titleButton);
+        stage.addActor(resultButton);
         stage.addActor(playTable);
     }
 
@@ -53,7 +56,7 @@ public class PlayScreen extends ScreenAdapter {
         if(env.SCREEN_MODE != Config.NO_SLCT) {
             String mode = env.SCREEN_MODE;
             Gdx.app.log(TAG, "change to PlayScreen :" + mode);
-            if(mode.equals(Config.BACK)) {
+            if(mode.equals(Config.TITL)) {
                 game.setScreen(new TitleScreen(this.game));
             }
             if(mode.equals(Config.RSLT)) {

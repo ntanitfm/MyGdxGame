@@ -35,14 +35,11 @@ public class Config {
     final static public float TTL_TXTBTN_HEIGHT_CTR = TTL_TXTBTN_HEIGHT / 2;
     // 状態名
     final static public String NO_SLCT              = "NO_SELECTED";
-    final static public String RSLT                 = "RESULT";
     final static public String TITL                 = "TITLE";
-    final static public String RNK                  = "RANKING";
-    // ボタンの名前
     final static public String PLAY_LV1             = "EASY";
     final static public String PLAY_LV2             = "FULL";
-    final static public String BACK                 = "BACK";
-    final static public String RANKING              = "RANKING";
+    final static public String RSLT                 = "RESULT";
+    final static public String RANKING              = "RANK";
     // シーン
     final static public SpriteBatch batcher         = new SpriteBatch();
     final static public OrthographicCamera camera   = new OrthographicCamera();

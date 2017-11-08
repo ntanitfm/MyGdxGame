@@ -108,21 +108,29 @@ class PlayEnvironmant {
         slctedPai.imgButton.setVisible(false);
     }
 
-    // プレイ バックボタン
-    TextButton getPlayBackButton(String label) {
+    // タイトルへ戻るボタン
+    TextButton getTitleButton(String label) {
         TextButton txtBtn = new TextButton(label, skin);
         txtBtn.setSize(100f, 50f);
         txtBtn.setPosition(0f, 0f);
-        setBackBtnListener(txtBtn);
+        setBtnListener(txtBtn);
+        return txtBtn;
+    }
+    // result画面へ強制以降(デバッグ用)
+    TextButton getResultButton(String label) {
+        TextButton txtBtn = new TextButton(label, skin);
+        txtBtn.setSize(100f, 50f);
+        txtBtn.setPosition(Config.SCRN_WIDTH - 100f, 0f);
+        setBtnListener(txtBtn);
         return txtBtn;
     }
 
-    // バックボタンリスナ
-    private void setBackBtnListener(final TextButton txtBtn) {
+
+    // ボタン名をそのままSCREEN_MODEへ渡すリスナー
+    private void setBtnListener(final TextButton txtBtn) {
         txtBtn.addListener(new InputListener() {
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                Gdx.app.log(TAG, "BackButton Pressed");
                 SCREEN_MODE = txtBtn.getText().toString();
                 return true;
             }
