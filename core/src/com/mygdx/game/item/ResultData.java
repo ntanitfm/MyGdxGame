@@ -7,7 +7,7 @@ package com.mygdx.game.item;
 
 public class ResultData {
     public String mode;
-    public String time;
+    public long time;
     public String name;
 
     // Firebase用の空のコンストラクタ
@@ -16,7 +16,7 @@ public class ResultData {
     public ResultData(String mode, long time) {
         this.mode = mode;
         this.name = " - ";
-        this.time = "" + (time / 1000f) + "秒";
+        this.time = time;
     }
 
     // Firebase用のGetter, Setter
@@ -28,11 +28,11 @@ public class ResultData {
         this.mode = mode;
     }
 
-    public String getTime() {
+    public long getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(long time) {
         this.time = time;
     }
 
@@ -47,5 +47,9 @@ public class ResultData {
     @Override
     public String toString() {
         return "mode = " + mode + ", time = " + time + ", name = " + name;
+    }
+
+    public String getSec() {
+        return "" + (time / 1000f) + "秒";
     }
 }

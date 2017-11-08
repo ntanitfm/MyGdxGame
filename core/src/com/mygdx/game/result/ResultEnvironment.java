@@ -29,7 +29,7 @@ class ResultEnvironment {
     Label getTimeLabel(){
         float width = 400f;
         float height = 100f;
-        Label label = new Label(rd.time, skin);
+        Label label = new Label(rd.getSec(), skin);
         label.setFontScale(5);
         label.setSize(width, height);
         label.setPosition(Config.SCRN_WIDTH_CTR - width / 2, Config.SCRN_HEIGHT_CTR - height / 2);

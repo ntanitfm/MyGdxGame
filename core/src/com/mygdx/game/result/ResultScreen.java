@@ -7,9 +7,13 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.mygdx.game.item.ResultData;
 import com.mygdx.game.main.MyGdxGame;
 import com.mygdx.game.item.Config;
+import com.mygdx.game.ranking.RankingScreen;
 import com.mygdx.game.title.TitleScreen;
+
+import java.util.List;
 
 /**
  * Created by ntani on 2017/11/01.
@@ -34,6 +38,12 @@ public class ResultScreen extends ScreenAdapter {
 //        inputName = env.getInputField();
         goTop = env.getTitleButton(Config.TITL);
         goRanking = env.getRankingButton(Config.RANK);
+
+        // デバッグ
+        List<ResultData> rslts = game.dbo.read();
+        for(ResultData rd : rslts) {
+            Gdx.app.log(TAG, rd.toString());
+        }
     }
 
     @Override
@@ -56,7 +66,7 @@ public class ResultScreen extends ScreenAdapter {
                 game.setScreen(new TitleScreen(this.game));
             }
             if(mode.equals(Config.RANK)) {
-//                game.setScreen(new RankingScreen(this.game, env.SCREEN_MODE));
+                game.setScreen(new RankingScreen(this.game, env.SCREEN_MODE));
             }
         }
     }
