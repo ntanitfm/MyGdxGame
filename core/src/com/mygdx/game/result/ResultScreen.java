@@ -29,6 +29,7 @@ public class ResultScreen extends ScreenAdapter {
         this.game = game;
         // 環境読み込み(経過時間からデータ生成、write、までを行う)
         env = new ResultEnvironment(gameMode, elapsedTime, game.dbo);
+        finishedTime = env.getTimeLabel();
     }
 
     @Override
@@ -36,6 +37,7 @@ public class ResultScreen extends ScreenAdapter {
         Gdx.app.log(TAG, "show");
         //  ステージ生成
         stage = new Stage(Config.viewport);
+        stage.addActor(finishedTime);
         Gdx.input.setInputProcessor(stage);
     }
 

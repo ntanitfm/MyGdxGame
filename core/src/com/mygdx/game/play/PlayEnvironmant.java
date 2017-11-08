@@ -125,7 +125,6 @@ class PlayEnvironmant {
         return txtBtn;
     }
 
-
     // ボタン名をそのままSCREEN_MODEへ渡すリスナー
     private void setBtnListener(final TextButton txtBtn) {
         txtBtn.addListener(new InputListener() {
