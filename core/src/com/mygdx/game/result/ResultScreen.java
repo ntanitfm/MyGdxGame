@@ -31,7 +31,7 @@ public class ResultScreen extends ScreenAdapter {
 
     public ResultScreen(MyGdxGame game, String gameMode, long elapsedTime) {
         Gdx.app.log(TAG, "constructor");
-        // 環境読み込み(経過時間からデータ生成、write、までを行う)
+        this.game = game;
         env = new ResultEnvironment(gameMode, elapsedTime, game.dbo);
         finishedTime = env.getTimeLabel();
 //        inputName = env.getInputField();
