@@ -37,23 +37,37 @@ class RankingEnvironment {
     }
 
     // テーブルセット
-    Table setTable() {
+    Table getTable() {
         showList = getByKey(viewMode);
+        // scrollPaneを入れるテーブル
+        Table table = new Table();
+        table.setWidth(Config.SCRN_WIDTH * 0.65f);
+        table.setHeight(Config.SCRN_HEIGHT * 0.8f);
+        // スクロール表示させるデータの作成
         Table container = new Table();
-        Table table = new Table(skin);
-        ScrollPane pane = new ScrollPane(table);
-        container.add(pane).width(Config.SCRN_WIDTH * 0.65f).height(Config.SCRN_HEIGHT * 0.8f);
+        int number = 1;
         for(ResultData rd : showList) {
             Gdx.app.log(TAG, rd.toString());
             container.row();
+            Label num  = new Label("" + (number++),skin);
             Label name = new Label(rd.name, skin);
             Label time = new Label(rd.generateSec(), skin);
-            name.setWrap(true);
-            time.setWrap(true);
+            num.setColor(0,0,0,1);
+            name.setColor(0,0,0,1);
+            time.setColor(0,0,0,1);
+            num.setFontScale(5);
+            name.setFontScale(5);
+            time.setFontScale(5);
+            container.add(num);
             container.add(name);
             container.add(time);
         }
-        return container;
+        container.pack();
+        // scrollPaneの作成
+        ScrollPane pane = new ScrollPane(container);
+        table.add(pane).fill().expand();
+        table.pack();
+        return table;
     }
 
     // キーによるリストの絞り込み

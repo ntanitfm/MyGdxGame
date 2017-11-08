@@ -32,7 +32,7 @@ public class RankingScreen extends ScreenAdapter {
         this.env = new RankingEnvironment(game.dbo);
         rankingMode = env.getModeLabel(Config.PLAY_LV1);
         goTitle = env.getTitleButton(Config.TITL);
-        rankTable = env.setTable();
+        rankTable = env.getTable();
         chgLv1 = env.getLv1RankingButton();
         chgLv2 = env.getLv2RankingButton();
     }
@@ -46,7 +46,7 @@ public class RankingScreen extends ScreenAdapter {
         stage.addActor(goTitle);
         stage.addActor(chgLv1);
         stage.addActor(chgLv2);
-//        stage.addActor(rankTable);
+        stage.addActor(rankTable);
         Gdx.input.setInputProcessor(stage);
     }
 
@@ -65,7 +65,7 @@ public class RankingScreen extends ScreenAdapter {
             }
         }
         if(env.isRankingChangeed()) {
-            rankTable = env.setTable();
+            rankTable = env.getTable();
             rankingMode.setText(env.viewMode + " mode Ranking");
         }
     }
