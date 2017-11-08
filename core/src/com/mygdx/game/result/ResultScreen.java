@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.mygdx.game.main.MyGdxGame;
 import com.mygdx.game.item.Config;
+import com.mygdx.game.title.TitleScreen;
 
 /**
  * Created by ntani on 2017/11/01.
@@ -20,8 +21,8 @@ public class ResultScreen extends ScreenAdapter {
     Stage stage;
     Label finishedTime;
     TextField inputName;
-    TextButton goRanking;
     TextButton goTop;
+    TextButton goRanking;
     ResultEnvironment env;
 
     public ResultScreen(MyGdxGame game, String gameMode, long elapsedTime) {
@@ -30,6 +31,9 @@ public class ResultScreen extends ScreenAdapter {
         // 環境読み込み(経過時間からデータ生成、write、までを行う)
         env = new ResultEnvironment(gameMode, elapsedTime, game.dbo);
         finishedTime = env.getTimeLabel();
+//        inputName = env.getInputField();
+        goTop = env.getTitleButton(Config.TITL);
+        goRanking = env.getRankingButton(Config.RANK);
     }
 
     @Override
@@ -38,15 +42,29 @@ public class ResultScreen extends ScreenAdapter {
         //  ステージ生成
         stage = new Stage(Config.viewport);
         stage.addActor(finishedTime);
+//        stage.addActor(inputName);
+        stage.addActor(goTop);
+        stage.addActor(goRanking);
         Gdx.input.setInputProcessor(stage);
     }
 
-    private void update() {}
+    private void update() {
+        if(env.SCREEN_MODE != Config.NO_SLCT) {
+            String mode = env.SCREEN_MODE;
+            Gdx.app.log(TAG, "change to Screen :" + mode);
+            if(mode.equals(Config.TITL)) {
+                game.setScreen(new TitleScreen(this.game));
+            }
+            if(mode.equals(Config.RANK)) {
+//                game.setScreen(new RankingScreen(this.game, env.SCREEN_MODE));
+            }
+        }
+    }
 
     private void draw() {
 //        Gdx.app.log(TAG, "draw");
         GL20 gl = Gdx.gl;
-        gl.glClearColor(0, 1, 0, 1);
+        gl.glClearColor(0, 0, 0, 1);
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Config.camera.update();
         Config.batcher.setProjectionMatrix(Config.camera.combined);

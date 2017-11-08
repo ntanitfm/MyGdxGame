@@ -55,7 +55,7 @@ public class PlayScreen extends ScreenAdapter {
     private void update() {
         if(env.SCREEN_MODE != Config.NO_SLCT) {
             String mode = env.SCREEN_MODE;
-            Gdx.app.log(TAG, "change to PlayScreen :" + mode);
+            Gdx.app.log(TAG, "change to Screen :" + mode);
             if(mode.equals(Config.TITL)) {
                 game.setScreen(new TitleScreen(this.game));
             }
