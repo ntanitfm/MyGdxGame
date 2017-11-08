@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.mygdx.game.item.Config;
 import com.mygdx.game.main.MyGdxGame;
+import com.mygdx.game.title.TitleScreen;
 
 /**
  * Created by ntani on 2017/11/08.
@@ -20,6 +21,8 @@ public class RankingScreen extends ScreenAdapter {
     Stage stage;
     Label rankingMode;
     TextButton goTitle;
+    TextButton chgLv1;
+    TextButton chgLv2;
     Table rankTable;
     RankingEnvironment env;
 
@@ -29,7 +32,9 @@ public class RankingScreen extends ScreenAdapter {
         this.env = new RankingEnvironment(game.dbo);
         rankingMode = env.getModeLabel(Config.PLAY_LV1);
         goTitle = env.getTitleButton(Config.TITL);
-//        rankTable = env.table;
+        rankTable = env.setTable();
+        chgLv1 = env.getLv1RankingButton();
+        chgLv2 = env.getLv2RankingButton();
     }
 
     @Override
@@ -39,6 +44,8 @@ public class RankingScreen extends ScreenAdapter {
         stage = new Stage(Config.viewport);
         stage.addActor(rankingMode);
         stage.addActor(goTitle);
+        stage.addActor(chgLv1);
+        stage.addActor(chgLv2);
 //        stage.addActor(rankTable);
         Gdx.input.setInputProcessor(stage);
     }
@@ -49,7 +56,19 @@ public class RankingScreen extends ScreenAdapter {
         draw();
     }
 
-    void update() {}
+    void update() {
+        if(env.SCREEN_MODE != Config.NO_SLCT) {
+            String mode = env.SCREEN_MODE;
+            Gdx.app.log(TAG, "change to Screen :" + mode);
+            if(mode.equals(Config.TITL)) {
+                game.setScreen(new TitleScreen(this.game));
+            }
+        }
+        if(env.isRankingChangeed()) {
+            rankTable = env.setTable();
+            rankingMode.setText(env.viewMode + " mode Ranking");
+        }
+    }
     void draw() {
         //        Gdx.app.log(TAG, "draw");
         GL20 gl = Gdx.gl;

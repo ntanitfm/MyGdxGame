@@ -25,39 +25,59 @@ class RankingEnvironment {
     private String TAG = RankingEnvironment.class.getSimpleName();
     List<ResultData> resultList;
     List<ResultData> showList;
-    String viewMode;
     String SCREEN_MODE;
-    Table table;
+    String viewMode;
+    String crntVMode;
 
     RankingEnvironment(DatabaseOperator dbo) {
         Gdx.app.log(TAG, "constractor");
+        SCREEN_MODE = Config.NO_SLCT;
+        crntVMode = viewMode = Config.PLAY_LV1;
         resultList = dbo.read();
-//        table = setTable();
     }
 
-    private Table setTable() {
-        Table tbl = new Table(skin);
-        tbl.setWidth(1500f);
-        tbl.setHeight(900f);
-        tbl.setColor(0.5f,0.5f,0.8f,1);
-        Table rankTable = new Table();
-        rankTable.pack();
-        ScrollPane scrollPane = new ScrollPane(rankTable);
-        tbl.add(scrollPane).fill().expand();
-        tbl.pack();
-        tbl.setColor(0f,0.5f,0.8f,1);
-        return tbl;
+    // テーブルセット
+    Table setTable() {
+        showList = getByKey(viewMode);
+        Table container = new Table();
+        Table table = new Table(skin);
+        ScrollPane pane = new ScrollPane(table);
+        container.add(pane).width(Config.SCRN_WIDTH * 0.65f).height(Config.SCRN_HEIGHT * 0.8f);
+        for(ResultData rd : showList) {
+            Gdx.app.log(TAG, rd.toString());
+            container.row();
+            Label name = new Label(rd.name, skin);
+            Label time = new Label(rd.generateSec(), skin);
+            name.setWrap(true);
+            time.setWrap(true);
+            container.add(name);
+            container.add(time);
+        }
+        return container;
     }
 
     // キーによるリストの絞り込み
     private List<ResultData> getByKey(String key) {
         List<ResultData> retList = new ArrayList<ResultData>();
         for(ResultData rd : resultList) {
-            if(key.equals(viewMode)) retList.add(rd);
+            if(key.equals(rd.mode)) retList.add(rd);
         }
         return retList;
     }
 
+    // ランキングモードが変更されたか
+    boolean isRankingChangeed() {
+        // 変更なし
+        if(viewMode.equals(crntVMode)) {
+            return false;
+        }
+        // 変更あり
+        else {
+            Gdx.app.log(TAG, "change ranking mode to " + viewMode);
+            crntVMode = viewMode;
+            return true;
+        }
+    }
 
     // ランキングモード表示用ラベル
     Label getModeLabel(String mode){
@@ -82,12 +102,41 @@ class RankingEnvironment {
         return txtBtn;
     }
 
+    // easyランキングモード
+    TextButton getLv1RankingButton() {
+        TextButton txtBtn = new TextButton(Config.PLAY_LV1, skin);
+        txtBtn.setSize(100f, 50f);
+        txtBtn.setPosition(Config.SCRN_WIDTH - 100f, 60f);
+        setChgModeListener(txtBtn);
+        return txtBtn;
+    }
+
+    // hardランキングモード
+    TextButton getLv2RankingButton() {
+        TextButton txtBtn = new TextButton(Config.PLAY_LV2, skin);
+        txtBtn.setSize(100f, 50f);
+        txtBtn.setPosition(Config.SCRN_WIDTH - 100f, 0f);
+        setChgModeListener(txtBtn);
+        return txtBtn;
+    }
+
     // ボタン名をそのままSCREEN_MODEへ渡すリスナー
     private void setBtnListener(final TextButton txtBtn) {
         txtBtn.addListener(new InputListener() {
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
                 SCREEN_MODE = txtBtn.getText().toString();
+                return true;
+            }
+        });
+    }
+
+    // ランキング表示モードを変更するリスナー
+    private void setChgModeListener(final TextButton txtBtn) {
+        txtBtn.addListener(new InputListener() {
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                viewMode = txtBtn.getText().toString();
                 return true;
             }
         });

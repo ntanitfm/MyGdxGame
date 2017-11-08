@@ -49,7 +49,7 @@ public class ResultData {
         return "mode = " + mode + ", time = " + time + ", name = " + name;
     }
 
-    public String getSec() {
+    public String generateSec() {
         return "" + (time / 1000f) + "秒";
     }
 }
