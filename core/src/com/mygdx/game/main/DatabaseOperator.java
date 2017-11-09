@@ -29,5 +29,4 @@ import java.util.List;
 public interface DatabaseOperator {
     void write(ResultData res);
     List<ResultData> read();
-    List<ResultData> readByKey(String key);
 }
