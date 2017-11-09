@@ -15,9 +15,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 public class Pai {
     private String TAG = Pai.class.getSimpleName();
     public Position position;
+    public int posId;               // 位置情報
     public String type;
-    public boolean invisible;    // 牌が除去されているか
-    public ImageButton imgButton;  // イメージボタン
+    public boolean invisible;       // 牌が除去されているか
+    public ImageButton imgButton;   // イメージボタン
 
     public Pai(String type, int y, int x) {
         this.position = new Position(y, x);

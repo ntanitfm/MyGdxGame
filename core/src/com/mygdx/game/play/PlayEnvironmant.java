@@ -23,7 +23,7 @@ class PlayEnvironmant {
     Table table;                    // 牌を並べるテーブル
     Pai slctedPai;                  // 選択された牌
     PlayJudgement jdg;              // 条件判定クラス
-    PlayConf pcnf;                 // モードごとの牌の設定
+    PlayConf pcnf;                  // モードごとの牌の設定
     List<Pai> paiList;              // 牌の配置
     String SCREEN_MODE;             // スクリーン遷移先
 
