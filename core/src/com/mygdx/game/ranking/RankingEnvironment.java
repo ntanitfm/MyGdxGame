@@ -15,6 +15,8 @@ import com.mygdx.game.main.DatabaseOperator;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.mygdx.game.item.Config.SCRN_HEIGHT_CTR;
+import static com.mygdx.game.item.Config.SCRN_WIDTH_CTR;
 import static com.mygdx.game.item.Config.skin;
 
 /**
@@ -36,37 +38,34 @@ class RankingEnvironment {
         resultList = dbo.read();
     }
 
-    // テーブルセット
     Table getTable() {
+        Gdx.app.log(TAG, "getTable called");
         showList = getByKey(viewMode);
-        // scrollPaneを入れるテーブル
         Table table = new Table();
-        table.setWidth(Config.SCRN_WIDTH * 0.65f);
-        table.setHeight(Config.SCRN_HEIGHT * 0.8f);
-        // スクロール表示させるデータの作成
-        Table container = new Table();
+        table.padLeft(100f);
+        table.padRight(100f);
+        table.setFillParent(true);
+        Label rankingMode = getModeLabel(viewMode);
+//        table.setDebug(true);
+        table.add(rankingMode).colspan(3).fillX();
         int number = 1;
         for(ResultData rd : showList) {
             Gdx.app.log(TAG, rd.toString());
-            container.row();
+            table.row();
             Label num  = new Label("" + (number++),skin);
             Label name = new Label(rd.name, skin);
             Label time = new Label(rd.generateSec(), skin);
             num.setColor(0,0,0,1);
             name.setColor(0,0,0,1);
             time.setColor(0,0,0,1);
-            num.setFontScale(5);
-            name.setFontScale(5);
-            time.setFontScale(5);
-            container.add(num);
-            container.add(name);
-            container.add(time);
+            num.setFontScale(3);
+            name.setFontScale(3);
+            time.setFontScale(3);
+            table.add(num).expand();
+            table.add(name).expand();
+            table.add(time).expand();
+            if(number > 10) break;
         }
-        container.pack();
-        // scrollPaneの作成
-        ScrollPane pane = new ScrollPane(container);
-        table.add(pane).fill().expand();
-        table.pack();
         return table;
     }
 

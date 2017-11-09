@@ -68,7 +68,7 @@ public class PlayScreen extends ScreenAdapter {
     private void draw() {
 //        Gdx.app.log(TAG, "draw");
         GL20 gl = Gdx.gl;
-        gl.glClearColor(1, 0, 0, 1);
+        gl.glClearColor(1, 1, 1, 1);
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Config.camera.update();
         Config.batcher.setProjectionMatrix(Config.camera.combined);

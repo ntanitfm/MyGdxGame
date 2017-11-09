@@ -42,7 +42,7 @@ public class RankingScreen extends ScreenAdapter {
         Gdx.app.log(TAG, "show");
         // ステージ生成
         stage = new Stage(Config.viewport);
-        stage.addActor(rankingMode);
+//        stage.addActor(rankingMode);
         stage.addActor(goTitle);
         stage.addActor(chgLv1);
         stage.addActor(chgLv2);
@@ -65,8 +65,9 @@ public class RankingScreen extends ScreenAdapter {
             }
         }
         if(env.isRankingChangeed()) {
+            stage.clear();
             rankTable = env.getTable();
-            rankingMode.setText(env.viewMode + " mode Ranking");
+            show();
         }
     }
     void draw() {
