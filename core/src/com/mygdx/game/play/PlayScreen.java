@@ -28,7 +28,7 @@ public class PlayScreen extends ScreenAdapter {
     long startTime;
 
     public PlayScreen(MyGdxGame game, String mode) {
-        Gdx.app.log(TAG, "Constructor");
+        Gdx.app.log("@@@", "Constructor in Play");
         this.game = game;
         // 開始時刻記録
         startTime = System.currentTimeMillis();

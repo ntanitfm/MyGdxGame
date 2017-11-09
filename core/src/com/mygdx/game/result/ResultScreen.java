@@ -30,7 +30,7 @@ public class ResultScreen extends ScreenAdapter {
     ResultEnvironment env;
 
     public ResultScreen(MyGdxGame game, String gameMode, long elapsedTime) {
-        Gdx.app.log(TAG, "constructor");
+        Gdx.app.log("@@@", "constructor in Result");
         this.game = game;
         env = new ResultEnvironment(gameMode, elapsedTime, game.dbo);
         finishedTime = env.getTimeLabel();
