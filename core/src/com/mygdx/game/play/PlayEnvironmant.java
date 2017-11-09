@@ -5,12 +5,11 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.mygdx.game.item.*;
+import com.mygdx.game.item.Config;
+import com.mygdx.game.item.Pai;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.mygdx.game.item.Config.skin;
 
 /**
  * ゲームスクリーンの環境設定を行うクラス。
@@ -42,7 +41,7 @@ class PlayEnvironmant {
         // 条件判定用クラス
         jdg = new PlayJudgement(pcnf.ROWS, pcnf.COLS);
         // テーブル設置
-        table = new Table(skin);
+        table = new Table(Config.skin);
         table.setFillParent(true);
         // 牌一覧・状態を格納するリスト
         paiList = new ArrayList<Pai>();
@@ -109,16 +108,16 @@ class PlayEnvironmant {
     }
 
     // タイトルへ戻るボタン
-    TextButton getTitleButton(String label) {
-        TextButton txtBtn = new TextButton(label, skin);
+    TextButton getTitleButton() {
+        TextButton txtBtn = new TextButton(Config.TITL, Config.skin);
         txtBtn.setSize(100f, 50f);
         txtBtn.setPosition(0f, 0f);
         setBtnListener(txtBtn);
         return txtBtn;
     }
     // result画面へ強制以降(デバッグ用)
-    TextButton getResultButton(String label) {
-        TextButton txtBtn = new TextButton(label, skin);
+    TextButton getResultButton() {
+        TextButton txtBtn = new TextButton(Config.RSLT, Config.skin);
         txtBtn.setSize(100f, 50f);
         txtBtn.setPosition(Config.SCRN_WIDTH - 100f, 0f);
         setBtnListener(txtBtn);

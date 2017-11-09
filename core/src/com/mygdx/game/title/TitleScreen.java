@@ -10,8 +10,6 @@ import com.mygdx.game.item.Config;
 import com.mygdx.game.main.MyGdxGame;
 import com.mygdx.game.play.PlayScreen;
 
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.rotateBy;
-
 /**
  * タイトル画面
  * Created by ntani on 2017/10/23.

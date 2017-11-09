@@ -35,8 +35,8 @@ public class ResultScreen extends ScreenAdapter {
         env = new ResultEnvironment(gameMode, elapsedTime, game.dbo);
         finishedTime = env.getTimeLabel();
 //        inputName = env.getInputField();
-        goTitle = env.getTitleButton(Config.TITL);
-        goRanking = env.getRankingButton(Config.RANK);
+        goTitle = env.getTitleButton();
+        goRanking = env.getRankingButton();
 
         // デバッグ
         List<ResultData> rslts = game.dbo.read();

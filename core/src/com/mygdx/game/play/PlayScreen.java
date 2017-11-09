@@ -35,8 +35,8 @@ public class PlayScreen extends ScreenAdapter {
         // 環境設定読み込み(モード選択)
         env = new PlayEnvironmant(mode);
         // テキストボタン
-        titleButton = env.getTitleButton(Config.TITL);
-        resultButton = env.getResultButton(Config.RSLT);
+        titleButton = env.getTitleButton();
+        resultButton = env.getResultButton();
         // 牌テーブル読み込み
         playTable = env.table;
     }

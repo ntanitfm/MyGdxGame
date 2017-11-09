@@ -8,7 +8,6 @@ import com.mygdx.game.item.Config;
 import com.mygdx.game.item.ResultData;
 import com.mygdx.game.main.DatabaseOperator;
 
-import static com.mygdx.game.item.Config.skin;
 
 /**
  * Created by ntani on 2017/11/01.
@@ -29,7 +28,7 @@ class ResultEnvironment {
     Label getTimeLabel(){
         float width = 400f;
         float height = 100f;
-        Label label = new Label(rd.generateSec(), skin);
+        Label label = new Label(rd.generateSec(), Config.skin);
         label.setFontScale(5);
         label.setSize(width, height);
         label.setPosition(Config.SCRN_WIDTH_CTR - width / 2, Config.SCRN_HEIGHT_CTR - height / 2);
@@ -39,7 +38,7 @@ class ResultEnvironment {
     TextField getInputField() {
         float width = 300f;
         float height = 80f;
-        TextField txf = new TextField("名前を入力", skin);
+        TextField txf = new TextField("名前を入力", Config.skin);
         txf.setScale(4);
         txf.setSize(width, height);
         txf.setPosition(Config.SCRN_WIDTH_CTR - width / 2, Config.SCRN_HEIGHT_CTR - 200);
@@ -47,16 +46,16 @@ class ResultEnvironment {
     }
 
     // タイトルへ戻るボタン
-    TextButton getTitleButton(String label) {
-        TextButton txtBtn = new TextButton(label, skin);
+    TextButton getTitleButton() {
+        TextButton txtBtn = new TextButton(Config.TITL, Config.skin);
         txtBtn.setSize(100f, 50f);
         txtBtn.setPosition(0f, 0f);
         setBtnListener(txtBtn);
         return txtBtn;
     }
     // ランキング画面へ
-    TextButton getRankingButton(String label) {
-        TextButton txtBtn = new TextButton(label, skin);
+    TextButton getRankingButton() {
+        TextButton txtBtn = new TextButton(Config.RANK, Config.skin);
         txtBtn.setSize(140f, 50f);
         txtBtn.setPosition(Config.SCRN_WIDTH - 140f, 0f);
         setBtnListener(txtBtn);

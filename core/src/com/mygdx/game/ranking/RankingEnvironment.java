@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
@@ -14,10 +13,6 @@ import com.mygdx.game.main.DatabaseOperator;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.mygdx.game.item.Config.SCRN_HEIGHT_CTR;
-import static com.mygdx.game.item.Config.SCRN_WIDTH_CTR;
-import static com.mygdx.game.item.Config.skin;
 
 /**
  * Created by ntani on 2017/11/08.
@@ -52,9 +47,9 @@ class RankingEnvironment {
         for(ResultData rd : showList) {
             Gdx.app.log(TAG, rd.toString());
             table.row();
-            Label num  = new Label("" + (number++),skin);
-            Label name = new Label(rd.name, skin);
-            Label time = new Label(rd.generateSec(), skin);
+            Label num  = new Label("" + (number++),Config.skin);
+            Label name = new Label(rd.name, Config.skin);
+            Label time = new Label(rd.generateSec(), Config.skin);
             num.setColor(0,0,0,1);
             name.setColor(0,0,0,1);
             time.setColor(0,0,0,1);
@@ -96,7 +91,7 @@ class RankingEnvironment {
     Label getModeLabel(String mode){
         float width = 500f;
         float height = 100f;
-        Label label = new Label(mode + " mode Ranking", skin);
+        Label label = new Label(mode + " mode Ranking", Config.skin);
         label.setFontScale(2);
         label.setSize(width, height);
         label.setPosition(Config.SCRN_WIDTH_CTR - width / 2, Config.SCRN_HEIGHT - height);
@@ -108,7 +103,7 @@ class RankingEnvironment {
 
     // タイトルへ戻るボタン
     TextButton getTitleButton() {
-        TextButton txtBtn = new TextButton(Config.TITL, skin);
+        TextButton txtBtn = new TextButton(Config.TITL, Config.skin);
         txtBtn.setSize(100f, 50f);
         txtBtn.setPosition(0f, 0f);
         setBtnListener(txtBtn);
@@ -117,7 +112,7 @@ class RankingEnvironment {
 
     // easyランキングモード
     TextButton getLv1RankingButton() {
-        TextButton txtBtn = new TextButton(Config.PLAY_LV1, skin);
+        TextButton txtBtn = new TextButton(Config.PLAY_LV1, Config.skin);
         txtBtn.setSize(100f, 50f);
         txtBtn.setPosition(Config.SCRN_WIDTH - 100f, 60f);
         setChgModeListener(txtBtn);
@@ -126,7 +121,7 @@ class RankingEnvironment {
 
     // hardランキングモード
     TextButton getLv2RankingButton() {
-        TextButton txtBtn = new TextButton(Config.PLAY_LV2, skin);
+        TextButton txtBtn = new TextButton(Config.PLAY_LV2, Config.skin);
         txtBtn.setSize(100f, 50f);
         txtBtn.setPosition(Config.SCRN_WIDTH - 100f, 0f);
         setChgModeListener(txtBtn);
