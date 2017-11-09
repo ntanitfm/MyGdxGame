@@ -47,12 +47,12 @@ public class FirebaseOperator implements DatabaseOperator {
         vel = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.v("@@@", "onDataChange called");
+                Log.v(TAG, "onDataChange called");
                 resultList = new ArrayList<>();
                 for (DataSnapshot res : dataSnapshot.getChildren()) {
                     resultList.add(res.getValue(ResultData.class));
                 }
-                Log.v("@@@", "size " + resultList.size());
+                Log.v(TAG, "size " + resultList.size());
             }
 
             @Override
