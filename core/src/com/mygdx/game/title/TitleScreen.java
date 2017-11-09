@@ -25,7 +25,7 @@ public class TitleScreen extends ScreenAdapter {
     TextButton normalButton;
 
     public TitleScreen(MyGdxGame game) {
-        Gdx.app.log(TAG, "Constructor");
+        Gdx.app.log("@@@", "Constructor");
         this.game = game;
         env = new TitleEnvironment();
         // 中央回転牌
@@ -37,7 +37,7 @@ public class TitleScreen extends ScreenAdapter {
 
     @Override
     public void show() {
-        Gdx.app.log(TAG, "show");
+        Gdx.app.log("@@@", "show");
         //  ステージ生成
         stage = new Stage(Config.viewport);
         Gdx.input.setInputProcessor(stage);
@@ -48,13 +48,13 @@ public class TitleScreen extends ScreenAdapter {
 
     private void update() {
         if (env.GAMEMODE != Config.NO_SLCT) {
-            Gdx.app.log(TAG, "change to PlayScreen :" + env.GAMEMODE);
+            Gdx.app.log("@@@", "change to PlayScreen :" + env.GAMEMODE);
             game.setScreen(new PlayScreen(this.game, env.GAMEMODE));
         }
     }
 
     private void draw() {
-//        Gdx.app.log(TAG, "draw");
+//        Gdx.app.log("@@@", "draw");
         GL20 gl = Gdx.gl;
         gl.glClearColor(1, 1, 1, 1);
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -74,10 +74,10 @@ public class TitleScreen extends ScreenAdapter {
     }
     @Override
     public void hide() {
-        Gdx.app.log(TAG, "hide");
+        Gdx.app.log("@@@", "hide");
     }
     @Override
     public void dispose() {
-        Gdx.app.log(TAG, "dispose");
+        Gdx.app.log("@@@", "dispose");
     }
 }

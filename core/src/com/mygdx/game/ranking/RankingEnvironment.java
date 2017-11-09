@@ -27,14 +27,14 @@ class RankingEnvironment {
     String crntVMode;
 
     RankingEnvironment(DatabaseOperator dbo) {
-        Gdx.app.log(TAG, "constractor");
+        Gdx.app.log("@@@", "constractor");
         SCREEN_MODE = Config.NO_SLCT;
         crntVMode = viewMode = Config.PLAY_LV1;
         resultList = dbo.read();
     }
 
     Table getTable() {
-        Gdx.app.log(TAG, "getTable called");
+        Gdx.app.log("@@@", "getTable called");
         showList = getByKey(viewMode);
         Table table = new Table();
         table.padLeft(100f);
@@ -45,7 +45,7 @@ class RankingEnvironment {
         table.add(rankingMode).colspan(3).fillX();
         int number = 1;
         for(ResultData rd : showList) {
-            Gdx.app.log(TAG, rd.toString());
+            Gdx.app.log("@@@", rd.toString());
             table.row();
             Label num  = new Label("" + (number++),Config.skin);
             Label name = new Label(rd.name, Config.skin);
@@ -81,7 +81,7 @@ class RankingEnvironment {
         }
         // 変更あり
         else {
-            Gdx.app.log(TAG, "change ranking mode to " + viewMode);
+            Gdx.app.log("@@@", "change ranking mode to " + viewMode);
             crntVMode = viewMode;
             return true;
         }

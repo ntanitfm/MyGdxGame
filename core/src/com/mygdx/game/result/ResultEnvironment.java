@@ -1,4 +1,5 @@
 package com.mygdx.game.result;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -19,6 +20,7 @@ class ResultEnvironment {
     String SCREEN_MODE;
 
     ResultEnvironment(String gameMode, long elapsedTime, DatabaseOperator dbo) {
+        Gdx.app.log("@@@", "constructor in Resultev");
         rd = new ResultData(gameMode, elapsedTime);
         this.dbo = dbo;
         this.SCREEN_MODE = Config.NO_SLCT;
