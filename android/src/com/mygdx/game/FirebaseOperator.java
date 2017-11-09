@@ -70,7 +70,7 @@ public class FirebaseOperator implements DatabaseOperator {
     }
     @Override
     public List<ResultData> read() {
-        Log.v(TAG, "read called");
+        Log.v("@@@", "read called");
         dbRef.addListenerForSingleValueEvent(vel);
         return resultList;
     }
