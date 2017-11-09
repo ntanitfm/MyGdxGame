@@ -19,7 +19,6 @@ public class RankingScreen extends ScreenAdapter {
     private String TAG = RankingScreen.class.getSimpleName();
     MyGdxGame game;
     Stage stage;
-    Label rankingMode;
     TextButton goTitle;
     TextButton chgLv1;
     TextButton chgLv2;
@@ -30,8 +29,7 @@ public class RankingScreen extends ScreenAdapter {
         Gdx.app.log(TAG, "constractor from Title");
         this.game = game;
         this.env = new RankingEnvironment(game.dbo);
-        rankingMode = env.getModeLabel(Config.PLAY_LV1);
-        goTitle = env.getTitleButton(Config.TITL);
+        goTitle = env.getTitleButton();
         rankTable = env.getTable();
         chgLv1 = env.getLv1RankingButton();
         chgLv2 = env.getLv2RankingButton();
@@ -42,7 +40,6 @@ public class RankingScreen extends ScreenAdapter {
         Gdx.app.log(TAG, "show");
         // ステージ生成
         stage = new Stage(Config.viewport);
-//        stage.addActor(rankingMode);
         stage.addActor(goTitle);
         stage.addActor(chgLv1);
         stage.addActor(chgLv2);

@@ -107,8 +107,8 @@ class RankingEnvironment {
 
 
     // タイトルへ戻るボタン
-    TextButton getTitleButton(String label) {
-        TextButton txtBtn = new TextButton(label, skin);
+    TextButton getTitleButton() {
+        TextButton txtBtn = new TextButton(Config.TITL, skin);
         txtBtn.setSize(100f, 50f);
         txtBtn.setPosition(0f, 0f);
         setBtnListener(txtBtn);

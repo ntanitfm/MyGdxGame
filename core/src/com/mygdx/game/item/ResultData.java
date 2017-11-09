@@ -15,7 +15,7 @@ public class ResultData {
 
     public ResultData(String mode, long time) {
         this.mode = mode;
-        this.name = " - ";
+        this.name = " ***** ";
         this.time = time;
     }
 
