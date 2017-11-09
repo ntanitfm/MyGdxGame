@@ -20,7 +20,7 @@ class TitleEnvironment {
     String GAMEMODE;
 
     TitleEnvironment() {
-        Gdx.app.log("@@@", "Construct in titleEnv");
+        Gdx.app.log(TAG, "Construct in titleEnv");
         GAMEMODE = Config.NO_SLCT;
     }
 

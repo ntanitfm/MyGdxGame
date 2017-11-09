@@ -27,7 +27,7 @@ class RankingEnvironment {
     String crntVMode;
 
     RankingEnvironment(DatabaseOperator dbo) {
-        Gdx.app.log("@@@", "constractor");
+        Gdx.app.log(TAG, "constractor");
         SCREEN_MODE = Config.NO_SLCT;
         crntVMode = viewMode = Config.PLAY_LV1;
         resultList = dbo.read();

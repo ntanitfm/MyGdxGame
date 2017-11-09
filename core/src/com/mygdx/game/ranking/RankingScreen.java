@@ -25,7 +25,7 @@ public class RankingScreen extends ScreenAdapter {
     RankingEnvironment env;
 
     public RankingScreen(MyGdxGame game) {
-        Gdx.app.log("@@@", "constractor in Ranking");
+        Gdx.app.log(TAG, "constractor in Ranking");
         this.game = game;
         this.env = new RankingEnvironment(game.dbo);
         goTitle = env.getTitleButton();
@@ -36,7 +36,7 @@ public class RankingScreen extends ScreenAdapter {
 
     @Override
     public void show() {
-        Gdx.app.log("@@@", "show");
+        Gdx.app.log(TAG, "show");
         // ステージ生成
         stage = new Stage(Config.viewport);
         stage.addActor(goTitle);

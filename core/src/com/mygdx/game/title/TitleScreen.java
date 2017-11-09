@@ -25,7 +25,7 @@ public class TitleScreen extends ScreenAdapter {
     TextButton normalButton;
 
     public TitleScreen(MyGdxGame game) {
-        Gdx.app.log("@@@", "Constructor in Title");
+        Gdx.app.log(TAG, "Constructor in Title");
         this.game = game;
         env = new TitleEnvironment();
         // 中央回転牌
@@ -37,7 +37,7 @@ public class TitleScreen extends ScreenAdapter {
 
     @Override
     public void show() {
-        Gdx.app.log("@@@", "show");
+        Gdx.app.log(TAG, "show");
         //  ステージ生成
         stage = new Stage(Config.viewport);
         Gdx.input.setInputProcessor(stage);
