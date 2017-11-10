@@ -18,11 +18,6 @@ import java.util.List;
  * データベースからResultData型のリストを取得。
  * リストはtimeの少ない順に並べ替えが行なわれている。
  *
- * @func readByKey
- * keyはResultDataのモード名を表す。
- * readByKeyはread()から得られるリストから
- * モード名の要素のみを抽出して返す。
- *
  * Created by ntani on 2017/11/07.
  */
 
