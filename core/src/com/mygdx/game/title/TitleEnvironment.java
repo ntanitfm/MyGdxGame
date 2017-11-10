@@ -3,12 +3,15 @@ package com.mygdx.game.title;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.item.Config;
 
@@ -63,6 +66,21 @@ class TitleEnvironment {
         imgBtn.setBounds(10, Config.SCRN_HEIGHT - height - 10, width, height);
         setBtnListener(imgBtn);
         return imgBtn;
+    }
+
+    // ダイアログ設定
+    Dialog getLicense() {
+        Dialog dialog = new Dialog(Config.license, Config.skin);
+        TextButton btn = new TextButton("OK", Config.skin);
+        btn.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                GAMEMODE = Config.NO_SLCT;
+            }
+        });
+        dialog.button(btn);
+        dialog.setSize(800f, 500f);
+        return dialog;
     }
 
     // リスナー設定

@@ -46,4 +46,13 @@ public class Config {
     final static public OrthographicCamera camera   = new OrthographicCamera();
     final static public Viewport viewport           = new FitViewport(Config.SCRN_WIDTH, Config.SCRN_HEIGHT, camera);
     final static public Skin skin                   = new Skin(Gdx.files.internal("skins/uiskin.json"));
+
+    // 文字列
+    final static public String license = "                                 Apache License\n" +
+            "                           Version 2.0, January 2004\n" +
+            "                        http://www.apache.org/licenses/\n" +
+            "\n" +
+            "   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION\n" +
+            "\n" +
+            "   1. Definitions.";
 }

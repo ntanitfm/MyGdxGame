@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -30,6 +31,7 @@ public class TitleScreen extends ScreenAdapter {
     TextButton normalButton;
     TextButton rankingButton;
     ImageButton info;
+    Dialog license;
 
     // 部品生成
     public TitleScreen(MyGdxGame game) {
@@ -44,6 +46,7 @@ public class TitleScreen extends ScreenAdapter {
         rankingButton = env.getTitleTextButton(Config.RANK, 370);
         // ライセンス表示ボタン
         info = env.getInfoButton();
+        license = env.getLicense();
     }
 
     // 部品登録
@@ -59,6 +62,7 @@ public class TitleScreen extends ScreenAdapter {
         stage.addActor(normalButton);
         stage.addActor(rankingButton);
         stage.addActor(info);
+        stage.addActor(license);
     }
 
     // スクリーン遷移
@@ -75,7 +79,7 @@ public class TitleScreen extends ScreenAdapter {
             }
             // ライセンス画面へ
             else if(env.GAMEMODE.equals(Config.LICE)) {
-                game.setScreen(new LicenseScreen(this.game));
+//                game.setScreen(new LicenseScreen(this.game));
             }
         }
     }
@@ -91,6 +95,10 @@ public class TitleScreen extends ScreenAdapter {
         Config.batcher.begin();
         stage.act();
         stage.draw();
+        if(env.GAMEMODE.equals(Config.LICE)) {
+            Gdx.app.log(TAG, "license");
+            license.show(stage);
+        }
         Config.batcher.end();
     }
 
