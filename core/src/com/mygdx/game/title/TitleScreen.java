@@ -51,6 +51,7 @@ public class TitleScreen extends ScreenAdapter {
         rankingButton = env.getTitleTextButton(Config.RANK, 370);
         // ライセンス表示ボタン
         info = env.getInfoButton();
+        license = env.getLicense();
     }
 
     // 部品登録
@@ -66,43 +67,14 @@ public class TitleScreen extends ScreenAdapter {
         stage.addActor(normalButton);
         stage.addActor(rankingButton);
         stage.addActor(info);
-
-        license = new Dialog("License", Config.skin) {
+        stage.addActor(license);
+        info.addListener(new InputListener() {
             @Override
-            public float getPrefWidth() {
-                // force dialog width
-                // return Gdx.graphics.getWidth() / 2;
-                return 700f;
-            }
-
-            @Override
-            public float getPrefHeight() {
-                // force dialog height
-                // return Gdx.graphics.getWidth() / 2;
-                return 400f;
-            }
-        };
-        license.setModal(true);
-        license.setMovable(false);
-        license.setResizable(false);
-
-        TextButton btn = new TextButton("OK", Config.skin);
-        btn.addListener(new InputListener() {
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y,
-                                     int pointer, int button) {
-                // Do whatever here for exit button
-                license.hide();
-                license.cancel();
-                license.remove();
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                license.show(stage);
                 return true;
             }
         });
-        license.show(stage).setPosition(
-                Config.SCRN_WIDTH_CTR - 350,
-                Config.SCRN_HEIGHT_CTR - 200
-        );
-        stage.addActor(license);
     }
 
     // スクリーン遷移
@@ -135,9 +107,6 @@ public class TitleScreen extends ScreenAdapter {
         Config.batcher.begin();
         stage.act();
         stage.draw();
-        if(env.GAMEMODE.equals(Config.LICE)) {
-            Gdx.app.log(TAG, "license");
-        }
         Config.batcher.end();
     }
 
