@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.mygdx.game.item.Config;
 import com.mygdx.game.main.MyGdxGame;
 import com.mygdx.game.play.PlayScreen;
+import com.mygdx.game.ranking.RankingScreen;
 
 /**
  * タイトル画面
@@ -23,6 +24,7 @@ public class TitleScreen extends ScreenAdapter {
     Image titlePai;
     TextButton easyButton;
     TextButton normalButton;
+    TextButton rankingButton;
 
     public TitleScreen(MyGdxGame game) {
         Gdx.app.log(TAG, "Constructor in Title");
@@ -31,8 +33,9 @@ public class TitleScreen extends ScreenAdapter {
         // 中央回転牌
         titlePai = env.getTitlePai();
         // テキストボタン
-        easyButton = env.getTitleTextButton(Config.PLAY_LV1, 250);
-        normalButton = env.getTitleTextButton(Config.PLAY_LV2, 350);
+        easyButton = env.getTitleTextButton(Config.PLAY_LV1, 230);
+        normalButton = env.getTitleTextButton(Config.PLAY_LV2, 300);
+        rankingButton = env.getTitleTextButton(Config.RANK, 370);
     }
 
     @Override
@@ -44,12 +47,18 @@ public class TitleScreen extends ScreenAdapter {
         stage.addActor(titlePai);
         stage.addActor(easyButton);
         stage.addActor(normalButton);
+        stage.addActor(rankingButton);
     }
 
     private void update() {
         if (env.GAMEMODE != Config.NO_SLCT) {
-            Gdx.app.log(TAG, "change to PlayScreen :" + env.GAMEMODE);
-            game.setScreen(new PlayScreen(this.game, env.GAMEMODE));
+            Gdx.app.log(TAG, "change to mode :" + env.GAMEMODE);
+            if(env.GAMEMODE.equals(Config.PLAY_LV1) || env.GAMEMODE.equals(Config.PLAY_LV2)) {
+                game.setScreen(new PlayScreen(this.game, env.GAMEMODE));
+            }
+            else if(env.GAMEMODE.equals(Config.RANK)) {
+                game.setScreen(new RankingScreen(this.game));
+            }
         }
     }
 

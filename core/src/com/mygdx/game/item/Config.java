@@ -3,9 +3,7 @@ package com.mygdx.game.item;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -24,15 +22,17 @@ public class Config {
     final static public float TTL_PAI_WIDTH         = 155;
     final static public float TTL_PAI_HEIGHT        = 222;
     final static public float TTL_PAI_ROTATE_SPD    = 2;
-    final static public float TTL_TXTBTN_WIDTH      = 300;
-    final static public float TTL_TXTBTN_HEIGHT     = 60;
+    final static public float TXTBTN_WIDTH_L = 300;
+    final static public float TXTBTN_WIDTH_M = 150;
+    final static public float TXTBTN_WIDTH_S = 100;
+    final static public float TXTBTN_HEIGHT = 50;
     // 従属変数
     final static public float SCRN_WIDTH_CTR        = SCRN_WIDTH / 2;
     final static public float SCRN_HEIGHT_CTR       = SCRN_HEIGHT / 2;
     final static public float TTL_PAI_WIDTH_CTR     = TTL_PAI_WIDTH / 2;
     final static public float TTL_PAI_HEIGHT_CTR    = TTL_PAI_HEIGHT / 2;
-    final static public float TTL_TXTBTN_WIDTH_CTR  = TTL_TXTBTN_WIDTH / 2;
-    final static public float TTL_TXTBTN_HEIGHT_CTR = TTL_TXTBTN_HEIGHT / 2;
+    final static public float TXTBTN_WIDTH_L_CTR = TXTBTN_WIDTH_L / 2;
+    final static public float TTL_TXTBTN_HEIGHT_CTR = TXTBTN_HEIGHT / 2;
     // 状態名
     final static public String NO_SLCT              = "NO_SELECTED";
     final static public String TITL                 = "TITLE";

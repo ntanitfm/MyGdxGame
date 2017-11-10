@@ -37,14 +37,14 @@ class TitleEnvironment {
     // テキストボタン
     TextButton getTitleTextButton(String label, float y_from_center) {
         TextButton txtBtn = new TextButton(label, skin);
-        txtBtn.setSize(TTL_TXTBTN_WIDTH, TTL_TXTBTN_HEIGHT);
-        txtBtn.setPosition(SCRN_WIDTH_CTR - TTL_TXTBTN_WIDTH_CTR, SCRN_HEIGHT_CTR - y_from_center);
-        setListener(txtBtn);
+        txtBtn.setSize(TXTBTN_WIDTH_L, TXTBTN_HEIGHT);
+        txtBtn.setPosition(SCRN_WIDTH_CTR - TXTBTN_WIDTH_L_CTR, SCRN_HEIGHT_CTR - y_from_center);
+        setBtnListener(txtBtn);
         return txtBtn;
     }
 
     // リスナー設定
-    private void setListener(final TextButton txtBtn) {
+    private void setBtnListener(final TextButton txtBtn) {
         txtBtn.addListener(new InputListener() {
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
