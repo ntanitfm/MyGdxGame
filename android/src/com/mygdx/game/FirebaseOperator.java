@@ -2,8 +2,11 @@ package com.mygdx.game;
 
 import android.util.Log;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.mygdx.game.item.ResultData;
 import com.mygdx.game.main.DatabaseOperator;
@@ -30,55 +33,45 @@ import java.util.List;
 
 public class FirebaseOperator implements DatabaseOperator {
     private String TAG = FirebaseOperator.class.getSimpleName();
+    private List<ResultData> resultList;
     private DatabaseReference dbRef;
-    private String PATH;
-    private Gson gson;
-    private String json;
+    private ValueEventListener vel;
 
     public FirebaseOperator() {
         Log.v(TAG, "constructor");
         dbRef = FirebaseDatabase.getInstance().getReference("Results");
-        PATH = "https://mygdxgame-7c33b.firebaseio.com/Results.json";
-        gson = new Gson();
-        json = "";
+        Log.v(TAG, "constructor");
+        // Firebaseインスタンス
+        dbRef = FirebaseDatabase.getInstance().getReference("Results");
+        // データ読み込み(リスナー)
+        vel = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.v(TAG, "onDataChange called");
+                resultList = new ArrayList<>();
+                for (DataSnapshot res : dataSnapshot.getChildren()) {
+                    resultList.add(res.getValue(ResultData.class));
+                }
+                Log.v(TAG, "size " + resultList.size());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, "onCancelled is called");
+            }
+        };
+        dbRef.addListenerForSingleValueEvent(vel);
+        Log.v(TAG, "constructor finished");
     }
     @Override
     public void write(ResultData res) {
         Log.v(TAG, "write called");
         dbRef.push().setValue(res);
     }
-
     @Override
     public List<ResultData> read() {
         Log.v(TAG, "read called");
-        // json取得実行
-        getJson();
-        // 処理完了まで待機
-        while (json.isEmpty()) {
-            try{
-                Thread.sleep(100);
-            }
-            catch (Exception e) {
-                Log.v(TAG, "json取得待機中に失敗");
-            }
-        }
-        List<ResultData> resultList = new ArrayList<>();
-        // jsonを変換
-        try {
-            JSONObject jObj = new JSONObject(json);
-            Iterator<String> iter = jObj.keys();
-            // 各結果の取得
-            while (iter.hasNext()) {
-                String key = iter.next();
-                Object value = jObj.get(key);
-                ResultData res = gson.fromJson(value.toString(), ResultData.class);
-                resultList.add(res);
-                Log.v(TAG, res.toString());
-            }
-        }
-        catch (Exception e) {
-            Log.v(TAG, "JSONオブジェクトの変換で失敗");
-        }
+        dbRef.addListenerForSingleValueEvent(vel);
         // 並べ替え
         Collections.sort(resultList, new Comparator<ResultData>() {
             @Override
@@ -89,48 +82,5 @@ public class FirebaseOperator implements DatabaseOperator {
             }
         });
         return resultList;
-    }
-
-    @Override
-    public List<ResultData> readByKey(String key) {
-        List<ResultData> retList = new ArrayList<>();
-        for(ResultData rd : read()) {
-            if(key.equals(rd.mode)) {
-                retList.add(rd);
-            }
-        }
-        return retList;
-    }
-
-    // Firebaseから直接jsonの取得
-    private void getJson() {
-        Log.v(TAG, "getJson called");
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Log.v(TAG, "Thread start");
-                    // GET通信
-                    URL url = new URL(PATH);
-                    HttpURLConnection http = (HttpURLConnection)url.openConnection();
-                    http.setRequestMethod("GET");
-                    Log.v(TAG, "connect ready");
-                    http.connect();
-                    Log.v(TAG, "connect done");
-                    // 内容読み出し
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(http.getInputStream()));
-                    String tmp = "", line = "";
-                    while ((line = reader.readLine()) != null) tmp += line;
-                    // json代入
-                    json = tmp;
-                    Log.v(TAG, "json substituted = " + json);
-                    reader.close();
-                }
-                catch(Exception e) {
-                    Log.v(TAG, "json取得失敗");
-                    e.printStackTrace();
-                }
-            }
-        }).start();
     }
 }

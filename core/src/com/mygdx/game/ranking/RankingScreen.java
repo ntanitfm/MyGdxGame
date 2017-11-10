@@ -25,7 +25,7 @@ public class RankingScreen extends ScreenAdapter {
     RankingEnvironment env;
 
     public RankingScreen(MyGdxGame game) {
-        Gdx.app.log(TAG, "constractor from Title");
+        Gdx.app.log(TAG, "constractor in Ranking");
         this.game = game;
         this.env = new RankingEnvironment(game.dbo);
         goTitle = env.getTitleButton();
