@@ -5,8 +5,10 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.mygdx.game.item.Config;
+import com.mygdx.game.license.LicenseScreen;
 import com.mygdx.game.main.MyGdxGame;
 import com.mygdx.game.play.PlayScreen;
 import com.mygdx.game.ranking.RankingScreen;
@@ -25,7 +27,9 @@ public class TitleScreen extends ScreenAdapter {
     TextButton easyButton;
     TextButton normalButton;
     TextButton rankingButton;
+    ImageButton info;
 
+    // 部品生成
     public TitleScreen(MyGdxGame game) {
         Gdx.app.log(TAG, "Constructor in Title");
         this.game = game;
@@ -36,20 +40,26 @@ public class TitleScreen extends ScreenAdapter {
         easyButton = env.getTitleTextButton(Config.PLAY_LV1, 230);
         normalButton = env.getTitleTextButton(Config.PLAY_LV2, 300);
         rankingButton = env.getTitleTextButton(Config.RANK, 370);
+        // ライセンス表示ボタン
+        info = env.getInfoButton();
     }
 
+    // 部品登録
     @Override
     public void show() {
         Gdx.app.log(TAG, "show");
-        //  ステージ生成
+        // ステージ生成
         stage = new Stage(Config.viewport);
         Gdx.input.setInputProcessor(stage);
+        // ウィジェット追加
         stage.addActor(titlePai);
         stage.addActor(easyButton);
         stage.addActor(normalButton);
         stage.addActor(rankingButton);
+        stage.addActor(info);
     }
 
+    // スクリーン遷移
     private void update() {
         if (env.GAMEMODE != Config.NO_SLCT) {
             Gdx.app.log(TAG, "change to mode :" + env.GAMEMODE);
@@ -60,6 +70,10 @@ public class TitleScreen extends ScreenAdapter {
             // ランキング画面へ
             else if(env.GAMEMODE.equals(Config.RANK)) {
                 game.setScreen(new RankingScreen(this.game));
+            }
+            // ライセンス画面へ
+            else if(env.GAMEMODE.equals(Config.LICE)) {
+                game.setScreen(new LicenseScreen(this.game));
             }
         }
     }

@@ -40,6 +40,7 @@ public class Config {
     final static public String PLAY_LV2             = "FULL";
     final static public String RSLT                 = "RESULT";
     final static public String RANK                 = "RANKING";
+    final static public String LICE                 = "LICENCE";
     // シーン
     final static public SpriteBatch batcher         = new SpriteBatch();
     final static public OrthographicCamera camera   = new OrthographicCamera();
