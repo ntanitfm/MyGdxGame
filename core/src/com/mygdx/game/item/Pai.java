@@ -35,8 +35,7 @@ public class Pai {
 
     // イメージボタンの作成
     private ImageButton generateImageButton(String type) {
-//        Gdx.app.log(TAG, "generateImageButton");
-        Gdx.app.log(TAG, "type = " + type);
+//        Gdx.app.log(TAG, "type = " + type);
         String path_up = "icon/med-normal/tile" + type + ".png";
         String path_down = "icon/med-gray/tile" + type + ".png";
         String path_checked = "icon/med-highlight/tile" + type + ".png";

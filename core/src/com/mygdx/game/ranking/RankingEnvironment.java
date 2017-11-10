@@ -20,6 +20,7 @@ import java.util.List;
 
 class RankingEnvironment {
     private String TAG = RankingEnvironment.class.getSimpleName();
+    DatabaseOperator dbo;
     List<ResultData> resultList;
     List<ResultData> showList;
     String SCREEN_MODE;
@@ -28,13 +29,14 @@ class RankingEnvironment {
 
     RankingEnvironment(DatabaseOperator dbo) {
         Gdx.app.log(TAG, "constractor");
+        this.dbo = dbo;
         SCREEN_MODE = Config.NO_SLCT;
         crntVMode = viewMode = Config.PLAY_LV1;
-        resultList = dbo.read();
     }
 
     Table getTable() {
         Gdx.app.log(TAG, "getTable called");
+        resultList = dbo.read();
         showList = getByKey(viewMode);
         Table table = new Table();
         table.padLeft(100f);

@@ -49,7 +49,7 @@ class PlayEnvironmant {
             table.row();
             for (int j = 0; j < pcnf.COLS; j++) {
                 Pai tmpPai = new Pai(pcnf.paiTypeList.remove(0), i, j);
-                Gdx.app.log(TAG, "sat pai = " + tmpPai.position + ", type = " + tmpPai.type);
+//                Gdx.app.log(TAG, "sat pai = " + tmpPai.position + ", type = " + tmpPai.type);
                 paiList.add(tmpPai);
                 setPaiListener(tmpPai);
                 table.add(tmpPai.imgButton).width(pcnf.PAI_WIDTH).height(pcnf.PAI_HEIGHT);
@@ -59,7 +59,7 @@ class PlayEnvironmant {
 
     // 牌選択時の動作
     private void setPaiListener(final Pai pai) {
-        Gdx.app.log(TAG, "setPaiListener");
+//        Gdx.app.log(TAG, "setPaiListener");
         pai.imgButton.addListener(new InputListener() {
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
