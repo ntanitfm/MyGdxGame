@@ -47,17 +47,21 @@ class ResultEnvironment {
 
     // タイトルへ戻るボタン
     TextButton getTitleButton() {
+        float width = Config.TXTBTN_WIDTH_S;
+        float height = Config.TXTBTN_HEIGHT;
         TextButton txtBtn = new TextButton(Config.TITL, Config.skin);
-        txtBtn.setSize(100f, 50f);
+        txtBtn.setSize(width, height);
         txtBtn.setPosition(0f, 0f);
         setBtnListener(txtBtn);
         return txtBtn;
     }
     // ランキング画面へ
     TextButton getRankingButton() {
+        float width = Config.TXTBTN_WIDTH_M;
+        float height = Config.TXTBTN_HEIGHT;
         TextButton txtBtn = new TextButton(Config.RANK, Config.skin);
-        txtBtn.setSize(140f, 50f);
-        txtBtn.setPosition(Config.SCRN_WIDTH - 140f, 0f);
+        txtBtn.setSize(width, height);
+        txtBtn.setPosition(Config.SCRN_WIDTH - width, 0f);
         setBtnListener(txtBtn);
         return txtBtn;
     }

@@ -53,9 +53,11 @@ public class TitleScreen extends ScreenAdapter {
     private void update() {
         if (env.GAMEMODE != Config.NO_SLCT) {
             Gdx.app.log(TAG, "change to mode :" + env.GAMEMODE);
+            // ゲームモードへの遷移
             if(env.GAMEMODE.equals(Config.PLAY_LV1) || env.GAMEMODE.equals(Config.PLAY_LV2)) {
                 game.setScreen(new PlayScreen(this.game, env.GAMEMODE));
             }
+            // ランキング画面へ
             else if(env.GAMEMODE.equals(Config.RANK)) {
                 game.setScreen(new RankingScreen(this.game));
             }
@@ -80,13 +82,5 @@ public class TitleScreen extends ScreenAdapter {
     public void render(float delta) {
         update();
         draw();
-    }
-    @Override
-    public void hide() {
-        Gdx.app.log(TAG, "hide");
-    }
-    @Override
-    public void dispose() {
-        Gdx.app.log(TAG, "dispose");
     }
 }

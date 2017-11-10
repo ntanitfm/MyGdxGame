@@ -7,4 +7,13 @@ package com.mygdx.game.licence;
  */
 
 public class LicenceScreen extends ScreenAdapter {
+    @Override
+    public void render(float delta) {
+        super.render(delta);
+    }
+
+    @Override
+    public void show() {
+        super.show();
+    }
 }

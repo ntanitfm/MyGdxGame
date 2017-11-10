@@ -48,6 +48,7 @@ class PlayEnvironmant {
         for (int i = 0; i < pcnf.ROWS; i++) {
             table.row();
             for (int j = 0; j < pcnf.COLS; j++) {
+                // @TODO 位置情報をPosIdとして登録し、Positionクラスを削除する.
                 Pai tmpPai = new Pai(pcnf.paiTypeList.remove(0), i, j);
 //                Gdx.app.log(TAG, "sat pai = " + tmpPai.position + ", type = " + tmpPai.type);
                 paiList.add(tmpPai);
@@ -70,13 +71,13 @@ class PlayEnvironmant {
                     slctedPai = pai;
                     Gdx.app.log(TAG, "slctedPai = " + slctedPai);
                 }
-                    // 同じ牌を選択したときは、直近の牌を削除
+                // 同じ牌を選択したときは、直近の牌を削除
                 else if (slctedPai.equals(pai)) {
                     Gdx.app.log(TAG, "equal Pai pressed");
                     slctedPai = null;
                     Gdx.app.log(TAG, "slctedPai = " + slctedPai);
                 }
-                    // 同じタイプの牌が選択された場合、条件判定
+                // 同じタイプの牌が選択された場合、条件判定
                 else {
                     Gdx.app.log(TAG, "same Pai selected. judge Start");
                     if (slctedPai.sameType(pai) && jdg.delJudgemnt(pai, slctedPai, paiList)) {

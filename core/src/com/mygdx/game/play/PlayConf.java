@@ -24,7 +24,7 @@ class PlayConf {
         // 牌並べ替え
         Collections.shuffle(paiTypeList);
     }
-
+    // EASYモード情報
     private void setLv1Conf() {
         ROWS = 6;
         COLS = 9;
@@ -38,6 +38,7 @@ class PlayConf {
             "31","31"
         ));
     }
+    // FULLモード情報
     private void lv2EnvConf() {
         ROWS = 8;
         COLS = 17;
