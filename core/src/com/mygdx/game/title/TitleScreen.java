@@ -15,6 +15,8 @@ import com.mygdx.game.ranking.RankingScreen;
 
 /**
  * タイトル画面
+ * 部品の取得や登録、描画、遷移のみを行う。
+ * 部品の生成は裏方のTitleEnvironmentに任せている。
  * Created by ntani on 2017/10/23.
  */
 

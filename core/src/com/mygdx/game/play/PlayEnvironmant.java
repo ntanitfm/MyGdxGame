@@ -77,9 +77,10 @@ class PlayEnvironmant {
                     slctedPai = null;
                     Gdx.app.log(TAG, "slctedPai = " + slctedPai);
                 }
-                // 同じタイプの牌が選択された場合、条件判定
+                // 異なる牌
                 else {
-                    Gdx.app.log(TAG, "same Pai selected. judge Start");
+                    Gdx.app.log(TAG, "diff pai selected");
+                    // 同じタイプの牌が選択された場合、条件判定
                     if (slctedPai.sameType(pai) && jdg.delJudgemnt(pai, slctedPai, paiList)) {
                         // 牌の無力化
                         deletePai(paiList, pai, slctedPai);
@@ -87,11 +88,11 @@ class PlayEnvironmant {
                         if(jdg.isAllPaiDeleted(paiList)) SCREEN_MODE = Config.RSLT;
                     }
                     // 牌の選択解除
-                    pai.imgButton.toggle();
                     slctedPai.imgButton.toggle();
                     // 直前の選択牌を無効化
-                    slctedPai = null;
+                    slctedPai = pai;
                 }
+                super.touchDown(event, x, y, pointer, button);
                 return true;
             }
         });

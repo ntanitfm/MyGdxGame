@@ -37,7 +37,7 @@ class PlayJudgement {
     // 右に前進
     private boolean fowardRight(Position pos, Position dest, List<Pai> paiList, int count) {
         Position newPos = new Position(pos.y, pos.x + 1);
-        Gdx.app.log(TAG, "fowardRight" + newPos);
+//        Gdx.app.log(TAG, "fowardRight" + newPos);
         // カウント0未満 または論理エリア外ならば、全て除去
         if(count>=0 && isArea(newPos)) {
             if(newPos.samePlace(dest)) return true;
@@ -53,7 +53,7 @@ class PlayJudgement {
     // 左に前進
     private boolean fowardLeft(Position pos, Position dest, List<Pai> paiList, int count) {
         Position newPos = new Position(pos.y, pos.x - 1);
-        Gdx.app.log(TAG, "fowardLeft" + newPos);
+//        Gdx.app.log(TAG, "fowardLeft" + newPos);
         // カウント0未満 または論理エリア外ならば、全て除去
         if(count>=0 && isArea(newPos)) {
             if(newPos.samePlace(dest)) return true;
@@ -70,7 +70,7 @@ class PlayJudgement {
     // 上に前進
     private boolean fowardUp(Position pos, Position dest, List<Pai> paiList, int count) {
         Position newPos = new Position(pos.y - 1, pos.x);
-        Gdx.app.log(TAG, "fowardUp" + newPos);
+//        Gdx.app.log(TAG, "fowardUp" + newPos);
         // カウント0未満 または論理エリア外ならば、全て除去
         if(count>=0 && isArea(newPos)) {
             if(newPos.samePlace(dest)) return true;
@@ -87,7 +87,7 @@ class PlayJudgement {
     // 下に前進
     private boolean fowardDown(Position pos, Position dest, List<Pai> paiList, int count) {
         Position newPos = new Position(pos.y + 1, pos.x);
-        Gdx.app.log(TAG, "fowardDown" + newPos);
+//        Gdx.app.log(TAG, "fowardDown" + newPos);
         // カウント0未満 または論理エリア外ならば、全て除去
         if(count>=0 && isArea(newPos)) {
             if(newPos.samePlace(dest)) return true;
