@@ -64,13 +64,8 @@ class PlayEnvironment {
         for (int i = 0; i < plycnf.ROWS; i++) {
             for (int j = 0; j < plycnf.COLS; j++) {
                 Pai tmpPai = new Pai(plycnf.paiTypeList.remove(0), i, j);
-                if(tmpPai.imgButton.isChecked()) Gdx.app.log(TAG, "Selected!!" + tmpPai.position.toString());
                 paiGroup.add(tmpPai.imgButton);
                 paiList.add(tmpPai);
-                if(tmpPai.imgButton.isChecked()){
-                    Gdx.app.log(TAG, "Selected!!" + tmpPai.position.toString());
-                    tmpPai.imgButton.toBack();
-                }
                 setPaiListener(tmpPai);
                 table.add(tmpPai.imgButton).width(plycnf.PAI_WIDTH).height(plycnf.PAI_HEIGHT);
             }
