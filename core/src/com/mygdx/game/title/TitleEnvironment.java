@@ -13,6 +13,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.item.Config;
+import com.mygdx.game.license.LicenseScreen;
+import com.mygdx.game.main.MyGdxGame;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.rotateBy;
 import static com.mygdx.game.item.Config.*;
@@ -28,11 +30,13 @@ import static com.mygdx.game.item.Config.*;
 
 class TitleEnvironment {
     private String TAG = TitleEnvironment.class.getSimpleName();
+    MyGdxGame game;
     Stage stage;
     String GAMEMODE;
 
-    TitleEnvironment() {
+    TitleEnvironment(MyGdxGame game) {
         Gdx.app.log(TAG, "Construct in titleEnv");
+        this.game = game;
         // ステージ生成
         stage = new Stage(Config.viewport);
         Gdx.input.setInputProcessor(stage);
@@ -70,12 +74,8 @@ class TitleEnvironment {
         // イメージボタン作成
         ImageButton imgBtn = new ImageButton(txrDrawable);
         imgBtn.setBounds(10, Config.SCRN_HEIGHT - height - 10, width, height);
-        // ダイアログ作成
-        Dialog dialog = new Dialog(Config.license, Config.skin);
-        TextButton btn = new TextButton("OK", Config.skin);
-        dialog.button(btn);
         // リスナー設定
-        setInfoListener(imgBtn, dialog);
+        setInfoListener(imgBtn);
         return imgBtn;
     }
 
@@ -90,15 +90,12 @@ class TitleEnvironment {
             }
         });
     }
-    private void setInfoListener(final ImageButton txtBtn, final Dialog dlg) {
+    // Licence画面遷移用リスナー
+    private void setInfoListener(final ImageButton txtBtn) {
         txtBtn.addListener(new InputListener() {
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                float width = 800f;
-                float height = 600f;
-                dlg.show(stage);
-                dlg.setSize(width, height);
-                dlg.setPosition(Config.SCRN_WIDTH_CTR - width / 2, Config.SCRN_HEIGHT_CTR - height / 2);
+                game.setScreen(new LicenseScreen(game));
                 return true;
             }
         });
