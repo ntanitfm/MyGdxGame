@@ -29,7 +29,7 @@ class PlayEnvironment {
     Table table;                        // 牌を並べるテーブル
     Pai slctedPai;                      // 選択された牌
     PlayJudgement jdg;                  // 条件判定クラス
-    PlayConf pcnf;                      // モードごとの牌の設定
+    PlayConf plycnf;                      // モードごとの牌の設定
     List<Pai> paiList;                  // 牌の配置
     ButtonGroup<ImageButton> paiGroup;  // 牌の制御用
     String mode;                        // モード記録用
@@ -41,7 +41,7 @@ class PlayEnvironment {
         this.game = game;
         this.mode = mode;
         // 難易度ごとに牌を配置
-        pcnf = new PlayConf(mode);
+        plycnf = new PlayConf(mode);
         commonEnvConf();
     }
 
@@ -50,7 +50,7 @@ class PlayEnvironment {
         // 開始時刻記録
         startTime = System.currentTimeMillis();
         // 条件判定用クラス
-        jdg = new PlayJudgement(pcnf.ROWS, pcnf.COLS);
+        jdg = new PlayJudgement(plycnf.ROWS, plycnf.COLS);
         // テーブル設置
         table = new Table(Config.skin);
         table.setFillParent(true);
@@ -58,13 +58,12 @@ class PlayEnvironment {
         paiList = new ArrayList<Pai>();
         // 牌制御用
         paiGroup = new ButtonGroup<ImageButton>();
+        paiGroup.setMinCheckCount(0);
         paiGroup.setMaxCheckCount(2);
         // 牌配置
-        for (int i = 0; i < pcnf.ROWS; i++) {
-            table.row();
-            for (int j = 0; j < pcnf.COLS; j++) {
-                // @TODO 位置情報をPosIdとして登録し、Positionクラスを削除する.
-                Pai tmpPai = new Pai(pcnf.paiTypeList.remove(0), i, j);
+        for (int i = 0; i < plycnf.ROWS; i++) {
+            for (int j = 0; j < plycnf.COLS; j++) {
+                Pai tmpPai = new Pai(plycnf.paiTypeList.remove(0), i, j);
                 if(tmpPai.imgButton.isChecked()) Gdx.app.log(TAG, "Selected!!" + tmpPai.position.toString());
                 paiGroup.add(tmpPai.imgButton);
                 paiList.add(tmpPai);
@@ -73,8 +72,9 @@ class PlayEnvironment {
                     tmpPai.imgButton.toBack();
                 }
                 setPaiListener(tmpPai);
-                table.add(tmpPai.imgButton).width(pcnf.PAI_WIDTH).height(pcnf.PAI_HEIGHT);
+                table.add(tmpPai.imgButton).width(plycnf.PAI_WIDTH).height(plycnf.PAI_HEIGHT);
             }
+            table.row();
         }
     }
 
