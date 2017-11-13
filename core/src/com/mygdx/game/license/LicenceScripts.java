@@ -7,9 +7,9 @@ package com.mygdx.game.license;
 class LicenceScripts {
     // Libgdxライセンス本文
     final static public String libgdxLicense = "\n" +
-            "                                 Apache License\n" +
-            "                           Version 2.0, January 2004\n" +
-            "                        http://www.apache.org/licenses/\n" +
+            "                                       Apache License\n" +
+            "                                   Version 2.0, January 2004\n" +
+            "                                http://www.apache.org/licenses/\n" +
             "\n" +
             "   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION\n" +
             "\n" +
