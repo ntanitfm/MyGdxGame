@@ -2,18 +2,10 @@ package com.mygdx.game.title;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.utils.Timer;
 import com.mygdx.game.item.Config;
-import com.mygdx.game.license.LicenseScreen;
 import com.mygdx.game.main.MyGdxGame;
 import com.mygdx.game.play.PlayScreen;
 import com.mygdx.game.ranking.RankingScreen;
@@ -79,11 +71,7 @@ public class TitleScreen extends ScreenAdapter {
 
     private void draw() {
 //        Gdx.app.log(TAG, "draw");
-        GL20 gl = Gdx.gl;
-        gl.glClearColor(1, 1, 1, 1);
-        gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        Config.camera.update();
-        Config.batcher.setProjectionMatrix(Config.camera.combined);
+        Config.drawRoutine();
         // ここに描画処理
         Config.batcher.begin();
         env.stage.act();
