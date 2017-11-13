@@ -20,6 +20,7 @@ import java.util.List;
 
 class RankingEnvironment {
     private String TAG = RankingEnvironment.class.getSimpleName();
+    DatabaseOperator dbo;
     List<ResultData> resultList;
     List<ResultData> showList;
     String SCREEN_MODE;
@@ -28,13 +29,14 @@ class RankingEnvironment {
 
     RankingEnvironment(DatabaseOperator dbo) {
         Gdx.app.log(TAG, "constractor");
+        this.dbo = dbo;
         SCREEN_MODE = Config.NO_SLCT;
         crntVMode = viewMode = Config.PLAY_LV1;
-        resultList = dbo.read();
     }
 
     Table getTable() {
         Gdx.app.log(TAG, "getTable called");
+        resultList = dbo.read();
         showList = getByKey(viewMode);
         Table table = new Table();
         table.padLeft(100f);
@@ -103,8 +105,10 @@ class RankingEnvironment {
 
     // タイトルへ戻るボタン
     TextButton getTitleButton() {
+        float width = Config.TXTBTN_WIDTH_S;
+        float height = Config.TXTBTN_HEIGHT;
         TextButton txtBtn = new TextButton(Config.TITL, Config.skin);
-        txtBtn.setSize(100f, 50f);
+        txtBtn.setSize(width, height);
         txtBtn.setPosition(0f, 0f);
         setBtnListener(txtBtn);
         return txtBtn;
@@ -112,18 +116,22 @@ class RankingEnvironment {
 
     // easyランキングモード
     TextButton getLv1RankingButton() {
+        float width = Config.TXTBTN_WIDTH_S;
+        float height = Config.TXTBTN_HEIGHT;
         TextButton txtBtn = new TextButton(Config.PLAY_LV1, Config.skin);
-        txtBtn.setSize(100f, 50f);
-        txtBtn.setPosition(Config.SCRN_WIDTH - 100f, 60f);
+        txtBtn.setSize(width, height);
+        txtBtn.setPosition(Config.SCRN_WIDTH - width, height + 10f);
         setChgModeListener(txtBtn);
         return txtBtn;
     }
 
     // hardランキングモード
     TextButton getLv2RankingButton() {
+        float width = Config.TXTBTN_WIDTH_S;
+        float height = Config.TXTBTN_HEIGHT;
         TextButton txtBtn = new TextButton(Config.PLAY_LV2, Config.skin);
-        txtBtn.setSize(100f, 50f);
-        txtBtn.setPosition(Config.SCRN_WIDTH - 100f, 0f);
+        txtBtn.setSize(width, height);
+        txtBtn.setPosition(Config.SCRN_WIDTH - width, 0f);
         setChgModeListener(txtBtn);
         return txtBtn;
     }

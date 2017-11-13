@@ -7,20 +7,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
 import com.mygdx.game.item.ResultData;
 import com.mygdx.game.main.DatabaseOperator;
 
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -38,40 +30,40 @@ public class FirebaseOperator implements DatabaseOperator {
     private ValueEventListener vel;
 
     public FirebaseOperator() {
-        Log.v(TAG, "constructor");
+        Log.i(TAG, "constructor");
         dbRef = FirebaseDatabase.getInstance().getReference("Results");
-        Log.v(TAG, "constructor");
+        Log.i(TAG, "constructor");
         // Firebaseインスタンス
         dbRef = FirebaseDatabase.getInstance().getReference("Results");
         // データ読み込み(リスナー)
         vel = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.v(TAG, "onDataChange called");
+                Log.i(TAG, "onDataChange called");
                 resultList = new ArrayList<>();
                 for (DataSnapshot res : dataSnapshot.getChildren()) {
                     resultList.add(res.getValue(ResultData.class));
                 }
-                Log.v(TAG, "size " + resultList.size());
+                Log.i(TAG, "size " + resultList.size());
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAG, "onCancelled is called");
+                Log.i(TAG, "onCancelled is called");
             }
         };
-        dbRef.addListenerForSingleValueEvent(vel);
-        Log.v(TAG, "constructor finished");
+        dbRef.addValueEventListener(vel);
+        Log.i(TAG, "constructor finished");
     }
     @Override
     public void write(ResultData res) {
-        Log.v(TAG, "write called");
+        Log.i(TAG, "write called");
         dbRef.push().setValue(res);
     }
     @Override
     public List<ResultData> read() {
-        Log.v(TAG, "read called");
-        dbRef.addListenerForSingleValueEvent(vel);
+        Log.i(TAG, "read called");
+//        dbRef.addListenerForSingleValueEvent(vel);
         // 並べ替え
         Collections.sort(resultList, new Comparator<ResultData>() {
             @Override

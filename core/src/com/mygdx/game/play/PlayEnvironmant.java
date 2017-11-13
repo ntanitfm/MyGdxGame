@@ -48,8 +48,9 @@ class PlayEnvironmant {
         for (int i = 0; i < pcnf.ROWS; i++) {
             table.row();
             for (int j = 0; j < pcnf.COLS; j++) {
+                // @TODO 位置情報をPosIdとして登録し、Positionクラスを削除する.
                 Pai tmpPai = new Pai(pcnf.paiTypeList.remove(0), i, j);
-                Gdx.app.log(TAG, "sat pai = " + tmpPai.position + ", type = " + tmpPai.type);
+//                Gdx.app.log(TAG, "sat pai = " + tmpPai.position + ", type = " + tmpPai.type);
                 paiList.add(tmpPai);
                 setPaiListener(tmpPai);
                 table.add(tmpPai.imgButton).width(pcnf.PAI_WIDTH).height(pcnf.PAI_HEIGHT);
@@ -59,7 +60,7 @@ class PlayEnvironmant {
 
     // 牌選択時の動作
     private void setPaiListener(final Pai pai) {
-        Gdx.app.log(TAG, "setPaiListener");
+//        Gdx.app.log(TAG, "setPaiListener");
         pai.imgButton.addListener(new InputListener() {
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -70,15 +71,16 @@ class PlayEnvironmant {
                     slctedPai = pai;
                     Gdx.app.log(TAG, "slctedPai = " + slctedPai);
                 }
-                    // 同じ牌を選択したときは、直近の牌を削除
+                // 同じ牌を選択したときは、直近の牌を削除
                 else if (slctedPai.equals(pai)) {
                     Gdx.app.log(TAG, "equal Pai pressed");
                     slctedPai = null;
                     Gdx.app.log(TAG, "slctedPai = " + slctedPai);
                 }
-                    // 同じタイプの牌が選択された場合、条件判定
+                // 異なる牌
                 else {
-                    Gdx.app.log(TAG, "same Pai selected. judge Start");
+                    Gdx.app.log(TAG, "diff pai selected");
+                    // 同じタイプの牌が選択された場合、条件判定
                     if (slctedPai.sameType(pai) && jdg.delJudgemnt(pai, slctedPai, paiList)) {
                         // 牌の無力化
                         deletePai(paiList, pai, slctedPai);
@@ -86,11 +88,11 @@ class PlayEnvironmant {
                         if(jdg.isAllPaiDeleted(paiList)) SCREEN_MODE = Config.RSLT;
                     }
                     // 牌の選択解除
-                    pai.imgButton.toggle();
                     slctedPai.imgButton.toggle();
                     // 直前の選択牌を無効化
-                    slctedPai = null;
+                    slctedPai = pai;
                 }
+                super.touchDown(event, x, y, pointer, button);
                 return true;
             }
         });
