@@ -35,6 +35,7 @@ class LicenseEnvironment {
         container.setFillParent(true);
         ScrollPane scrollPane = new ScrollPane(script, Config.skin);
         container.add(scrollPane);
+//        container.debugAll();
         return container;
     }
 
