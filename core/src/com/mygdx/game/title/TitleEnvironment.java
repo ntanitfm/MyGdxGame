@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -29,10 +30,14 @@ import static com.mygdx.game.item.Config.*;
 
 class TitleEnvironment {
     private String TAG = TitleEnvironment.class.getSimpleName();
+    Stage stage;
     String GAMEMODE;
 
     TitleEnvironment() {
         Gdx.app.log(TAG, "Construct in titleEnv");
+        // ステージ生成
+        stage = new Stage(Config.viewport);
+        Gdx.input.setInputProcessor(stage);
         GAMEMODE = Config.NO_SLCT;
     }
 
@@ -57,29 +62,30 @@ class TitleEnvironment {
 
     // licence表示ボタン
     ImageButton getInfoButton() {
+        // サイズ
         float width = 30f;
         float height = 30f;
+        // テクスチャ準備
         Texture texture = new Texture(Gdx.files.internal("icon/button/info.png"));
         TextureRegion txRegion = new TextureRegion(texture);
         TextureRegionDrawable txrDrawable = new TextureRegionDrawable(txRegion);
+        // イメージボタン作成
         ImageButton imgBtn = new ImageButton(txrDrawable);
         imgBtn.setBounds(10, Config.SCRN_HEIGHT - height - 10, width, height);
-        setBtnListener(imgBtn);
+        // リスナー作成
+        setInfoListener(imgBtn, getLicense());
         return imgBtn;
     }
 
     // ダイアログ設定
     Dialog getLicense() {
+        float width = 800f;
+        float height = 600f;
         Dialog dialog = new Dialog(Config.license, Config.skin);
         TextButton btn = new TextButton("OK", Config.skin);
-        btn.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                GAMEMODE = Config.NO_SLCT;
-            }
-        });
         dialog.button(btn);
-        dialog.setSize(800f, 500f);
+        dialog.setSize(width, height);
+        dialog.setPosition(Config.SCRN_WIDTH_CTR - width / 2, Config.SCRN_HEIGHT_CTR - height / 2);
         return dialog;
     }
 
@@ -94,15 +100,13 @@ class TitleEnvironment {
             }
         });
     }
-    private void setBtnListener(final ImageButton txtBtn) {
+    private void setInfoListener(final ImageButton txtBtn, final Dialog dlg) {
         txtBtn.addListener(new InputListener() {
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                GAMEMODE = Config.LICE;
-                Gdx.app.log(TAG, "GAMEMODE = " + GAMEMODE);
+                dlg.show(stage);
                 return true;
             }
         });
     }
-
 }

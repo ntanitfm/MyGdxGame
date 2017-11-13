@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -29,7 +28,6 @@ import com.mygdx.game.ranking.RankingScreen;
 public class TitleScreen extends ScreenAdapter {
     String TAG = TitleScreen.class.getSimpleName();
     MyGdxGame game;
-    Stage stage;
     TitleEnvironment env;
     Image titlePai;
     TextButton easyButton;
@@ -51,30 +49,18 @@ public class TitleScreen extends ScreenAdapter {
         rankingButton = env.getTitleTextButton(Config.RANK, 370);
         // ライセンス表示ボタン
         info = env.getInfoButton();
-        license = env.getLicense();
     }
 
     // 部品登録
     @Override
     public void show() {
         Gdx.app.log(TAG, "show");
-        // ステージ生成
-        stage = new Stage(Config.viewport);
-        Gdx.input.setInputProcessor(stage);
         // ウィジェット追加
-        stage.addActor(titlePai);
-        stage.addActor(easyButton);
-        stage.addActor(normalButton);
-        stage.addActor(rankingButton);
-        stage.addActor(info);
-        stage.addActor(license);
-        info.addListener(new InputListener() {
-            @Override
-            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                license.show(stage);
-                return true;
-            }
-        });
+        env.stage.addActor(titlePai);
+        env.stage.addActor(easyButton);
+        env.stage.addActor(normalButton);
+        env.stage.addActor(rankingButton);
+        env.stage.addActor(info);
     }
 
     // スクリーン遷移
@@ -89,10 +75,6 @@ public class TitleScreen extends ScreenAdapter {
             else if(env.GAMEMODE.equals(Config.RANK)) {
                 game.setScreen(new RankingScreen(this.game));
             }
-            // ライセンス画面へ
-            else if(env.GAMEMODE.equals(Config.LICE)) {
-//                game.setScreen(new LicenseScreen(this.game));
-            }
         }
     }
 
@@ -105,8 +87,8 @@ public class TitleScreen extends ScreenAdapter {
         Config.batcher.setProjectionMatrix(Config.camera.combined);
         // ここに描画処理
         Config.batcher.begin();
-        stage.act();
-        stage.draw();
+        env.stage.act();
+        env.stage.draw();
         Config.batcher.end();
     }
 
