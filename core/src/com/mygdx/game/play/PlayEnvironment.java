@@ -65,8 +65,13 @@ class PlayEnvironment {
             for (int j = 0; j < pcnf.COLS; j++) {
                 // @TODO 位置情報をPosIdとして登録し、Positionクラスを削除する.
                 Pai tmpPai = new Pai(pcnf.paiTypeList.remove(0), i, j);
+                if(tmpPai.imgButton.isChecked()) Gdx.app.log(TAG, "Selected!!" + tmpPai.position.toString());
                 paiGroup.add(tmpPai.imgButton);
                 paiList.add(tmpPai);
+                if(tmpPai.imgButton.isChecked()){
+                    Gdx.app.log(TAG, "Selected!!" + tmpPai.position.toString());
+                    tmpPai.imgButton.toBack();
+                }
                 setPaiListener(tmpPai);
                 table.add(tmpPai.imgButton).width(pcnf.PAI_WIDTH).height(pcnf.PAI_HEIGHT);
             }
