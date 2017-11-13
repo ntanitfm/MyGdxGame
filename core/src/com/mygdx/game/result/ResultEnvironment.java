@@ -43,7 +43,7 @@ class ResultEnvironment {
             @Override
             public void canceled() {
                 // データ登録なし
-                Gdx.app.log(TAG, "canceled");
+                Gdx.app.log(TAG, "canceled_データ登録なし");
             }
         }, "名前の入力。", "", "省略可能");
     }
