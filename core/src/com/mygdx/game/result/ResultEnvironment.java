@@ -63,6 +63,7 @@ class ResultEnvironment {
         setBtnListener(txtBtn);
         return txtBtn;
     }
+
     // ランキング画面ボタン
     TextButton getRankingButton() {
         float width = Config.TXTBTN_WIDTH_M;
