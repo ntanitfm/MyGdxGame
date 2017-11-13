@@ -120,8 +120,8 @@ class PlayEnvironment {
     private void deletePai(List<Pai> paiList, Pai nowPai, Pai slctedPai) {
         Gdx.app.log(TAG, "deletePai");
         // ボタン登録フラグ抹消
-        paiList.get(jdg.convPos_Id(nowPai.position)).invisible = true;
-        paiList.get(jdg.convPos_Id(slctedPai.position)).invisible = true;
+        paiList.get(nowPai.posId).invisible = true;
+        paiList.get(slctedPai.posId).invisible = true;
         // ボタン不可視化
         nowPai.imgButton.setVisible(false);
         slctedPai.imgButton.setVisible(false);

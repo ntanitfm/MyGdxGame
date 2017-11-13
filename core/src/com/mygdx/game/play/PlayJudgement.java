@@ -20,8 +20,8 @@ class PlayJudgement {
     }
 
     boolean delJudgemnt(Pai now, Pai dest, List<Pai> paiList) {
-        Position nowPos = now.position;
-        Position destPos = dest.position;
+        int nowPos = now.posId;
+        int destPos = dest.posId;
         Gdx.app.log(TAG, "delJudgemnt " + now.position);
         if(fowardRight(nowPos, destPos, paiList,2)) return true;
         Gdx.app.log(TAG, "right");
@@ -35,12 +35,12 @@ class PlayJudgement {
     }
 
     // 右に前進
-    private boolean fowardRight(Position pos, Position dest, List<Pai> paiList, int count) {
-        Position newPos = new Position(pos.y, pos.x + 1);
+    private boolean fowardRight(int pos, int dest, List<Pai> paiList, int count) {
+        int newPos = pos + 1;
 //        Gdx.app.log(TAG, "fowardRight" + newPos);
         // カウント0未満 または論理エリア外ならば、全て除去
         if(count>=0 && isArea(newPos)) {
-            if(newPos.samePlace(dest)) return true;
+            if(newPos == dest) return true;
             if(judgeCanSerch(newPos, paiList)) {
                 //探索続行
                 if(fowardRight(newPos, dest, paiList, count)) return true;
@@ -51,12 +51,12 @@ class PlayJudgement {
         return false;
     }
     // 左に前進
-    private boolean fowardLeft(Position pos, Position dest, List<Pai> paiList, int count) {
-        Position newPos = new Position(pos.y, pos.x - 1);
+    private boolean fowardLeft(int pos, int dest, List<Pai> paiList, int count) {
+        int newPos = pos - 1;
 //        Gdx.app.log(TAG, "fowardLeft" + newPos);
         // カウント0未満 または論理エリア外ならば、全て除去
         if(count>=0 && isArea(newPos)) {
-            if(newPos.samePlace(dest)) return true;
+            if(newPos == dest) return true;
             if(judgeCanSerch(newPos, paiList)) {
                 //探索続行
                 if(fowardLeft(newPos, dest, paiList, count)) return true;
@@ -68,12 +68,12 @@ class PlayJudgement {
     }
 
     // 上に前進
-    private boolean fowardUp(Position pos, Position dest, List<Pai> paiList, int count) {
-        Position newPos = new Position(pos.y - 1, pos.x);
+    private boolean fowardUp(int pos, int dest, List<Pai> paiList, int count) {
+        int newPos = pos - COLS;
 //        Gdx.app.log(TAG, "fowardUp" + newPos);
         // カウント0未満 または論理エリア外ならば、全て除去
         if(count>=0 && isArea(newPos)) {
-            if(newPos.samePlace(dest)) return true;
+            if(newPos == dest) return true;
             if(judgeCanSerch(newPos, paiList)) {
                 //探索続行
                 if(fowardUp(newPos, dest, paiList, count)) return true;
@@ -85,12 +85,12 @@ class PlayJudgement {
     }
 
     // 下に前進
-    private boolean fowardDown(Position pos, Position dest, List<Pai> paiList, int count) {
-        Position newPos = new Position(pos.y + 1, pos.x);
+    private boolean fowardDown(int pos, int dest, List<Pai> paiList, int count) {
+        int newPos = pos + COLS;
 //        Gdx.app.log(TAG, "fowardDown" + newPos);
         // カウント0未満 または論理エリア外ならば、全て除去
         if(count>=0 && isArea(newPos)) {
-            if(newPos.samePlace(dest)) return true;
+            if(newPos == dest) return true;
             if(judgeCanSerch(newPos, paiList)) {
                 //探索続行
                 if(fowardDown(newPos, dest, paiList, count)) return true;
@@ -102,11 +102,10 @@ class PlayJudgement {
     }
 
     // 探索可能か否かの判定
-    private boolean judgeCanSerch(Position pos, List<Pai> paiList) {
+    private boolean judgeCanSerch(int pos, List<Pai> paiList) {
         Gdx.app.log(TAG, "here is " + pos);
-        int posId = convPos_Id(pos);
         // 実エリア内 かつ 移動先のinvisibleがtrue
-        if(isRealArea(pos) && paiList.get(posId).invisible) {
+        if(isRealArea(pos) && paiList.get(pos).invisible) {
             Gdx.app.log(TAG, "moving inside range");
             return true;
         }
@@ -119,29 +118,22 @@ class PlayJudgement {
         return false;
     }
 
-    // 位置情報をIDに変換
-    int convPos_Id(Position pos) {
-        return pos.y * COLS + pos.x;
-    }
-
     // 位置 -> id
     int posToId(int y, int x) {
         return y * COLS + x;
     }
 
     // エリア内か判定
-    private boolean isArea(Position pos) {
-        if(-1 <= pos.y && pos.y <= ROWS)
-            if(-1 <= pos.x && pos.x <= COLS)
-                return true;
+    private boolean isArea(int pos) {
+        if(-(COLS + 3) <= pos && pos <= (ROWS + 1) * (COLS + 1) - 1)
+            return true;
         return false;
     }
 
     // 実エリア上かの判定
-    private boolean isRealArea(Position pos) {
-        if(0 <= pos.y && pos.y < ROWS)
-            if(0 <= pos.x && pos.x < COLS)
-                return true;
+    private boolean isRealArea(int pos) {
+        if(0 <= pos && pos < ROWS * COLS - 1)
+            return true;
         return false;
     }
 
