@@ -26,6 +26,7 @@ class PlayEnvironmant {
     PlayConf pcnf;                  // モードごとの牌の設定
     List<Pai> paiList;              // 牌の配置
     String SCREEN_MODE;             // スクリーン遷移先
+    boolean isJudging;              // 処理ロック用のフラグ
 
     // 環境設定
     PlayEnvironmant(String mode) {
@@ -60,7 +61,7 @@ class PlayEnvironmant {
 
     // 牌選択時の動作
     private void setPaiListener(final Pai pai) {
-//        Gdx.app.log(TAG, "setPaiListener");
+        Gdx.app.log(TAG, "setPaiListener");
         pai.imgButton.addListener(new InputListener() {
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -80,6 +81,16 @@ class PlayEnvironmant {
                 // 異なる牌
                 else {
                     Gdx.app.log(TAG, "diff pai selected");
+                    // ロック機構
+                    if(isJudging) {
+                        // 他のjudgeが進行中なら、何もせず終了
+                        Gdx.app.log(TAG, "conflict occurred");
+                        return true;
+                    }
+                    else {
+                        // ロックをかける
+                        isJudging = true;
+                    }
                     // 同じタイプの牌が選択された場合、条件判定
                     if (slctedPai.sameType(pai) && jdg.delJudgemnt(pai, slctedPai, paiList)) {
                         // 牌の無力化
@@ -87,12 +98,15 @@ class PlayEnvironmant {
                         // 全牌が除去されたかの判定
                         if(jdg.isAllPaiDeleted(paiList)) SCREEN_MODE = Config.RSLT;
                     }
-                    // 牌の選択解除
-                    slctedPai.imgButton.toggle();
+                    // チェックされているときのみtoggleを行う
+                    if(slctedPai.imgButton.isChecked()) {
+                        Gdx.app.log(TAG, "toggled");
+                        slctedPai.imgButton.toggle();
+                    }
                     // 直前の選択牌を無効化
                     slctedPai = pai;
                 }
-                super.touchDown(event, x, y, pointer, button);
+                isJudging = false;
                 return true;
             }
         });
