@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.mygdx.game.item.Config;
 import com.mygdx.game.item.Pai;
-import com.mygdx.game.main.MyGdxGame;
+import com.mygdx.game.main.Shisen;
 import com.mygdx.game.result.ResultScreen;
 import com.mygdx.game.title.TitleScreen;
 
@@ -25,7 +25,7 @@ import java.util.List;
 
 class PlayEnvironment {
     private String TAG = PlayEnvironment.class.getSimpleName();
-    MyGdxGame game;
+    Shisen game;
     Table table;                        // 牌を並べるテーブル
     Pai slctedPai;                      // 選択された牌
     PlayJudgement jdg;                  // 条件判定クラス
@@ -36,7 +36,7 @@ class PlayEnvironment {
     long startTime;                     // 時間記録用
 
     // 環境設定
-    PlayEnvironment(MyGdxGame game, String mode) {
+    PlayEnvironment(Shisen game, String mode) {
         Gdx.app.log(TAG, mode + "Mode");
         this.game = game;
         this.mode = mode;

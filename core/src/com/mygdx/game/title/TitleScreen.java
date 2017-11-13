@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.mygdx.game.item.Config;
-import com.mygdx.game.main.MyGdxGame;
+import com.mygdx.game.main.Shisen;
 
 /**
  * タイトル画面
@@ -27,7 +27,7 @@ public class TitleScreen extends ScreenAdapter {
     ImageButton info;
 
     // 部品生成
-    public TitleScreen(MyGdxGame game) {
+    public TitleScreen(Shisen game) {
         Gdx.app.log(TAG, "Constructor in Title");
         env = new TitleEnvironment(game);
         // 中央回転牌

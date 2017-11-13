@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.mygdx.game.item.Config;
 import com.mygdx.game.item.ResultData;
-import com.mygdx.game.main.MyGdxGame;
+import com.mygdx.game.main.Shisen;
 import com.mygdx.game.ranking.RankingScreen;
 import com.mygdx.game.title.TitleScreen;
 
@@ -19,12 +19,12 @@ import com.mygdx.game.title.TitleScreen;
 
 class ResultEnvironment {
     private String TAG = ResultEnvironment.class.getSimpleName();
-    MyGdxGame game;
+    Shisen game;
     ResultData rd;
     String mode;
     long time;
 
-    ResultEnvironment(final MyGdxGame game, String gameMode, long elapsedTime) {
+    ResultEnvironment(final Shisen game, String gameMode, long elapsedTime) {
         Gdx.app.log(TAG, "constructor in ResultEnv");
         this.game = game;
         this.mode = gameMode;

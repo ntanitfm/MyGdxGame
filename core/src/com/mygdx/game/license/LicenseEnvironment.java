@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.mygdx.game.item.Config;
-import com.mygdx.game.main.MyGdxGame;
+import com.mygdx.game.main.Shisen;
 import com.mygdx.game.title.TitleScreen;
 
 /**
@@ -17,9 +17,9 @@ import com.mygdx.game.title.TitleScreen;
 
 class LicenseEnvironment {
     private String TAG = LicenseEnvironment.class.getSimpleName();
-    MyGdxGame game;
+    Shisen game;
 
-    LicenseEnvironment(MyGdxGame game) {
+    LicenseEnvironment(Shisen game) {
         Gdx.app.log(TAG, "Constructor");
         this.game = game;
     }

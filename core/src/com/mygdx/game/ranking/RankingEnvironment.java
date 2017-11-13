@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.item.Config;
 import com.mygdx.game.item.ResultData;
-import com.mygdx.game.main.MyGdxGame;
+import com.mygdx.game.main.Shisen;
 import com.mygdx.game.title.TitleScreen;
 
 import java.util.ArrayList;
@@ -21,14 +21,14 @@ import java.util.List;
 
 class RankingEnvironment {
     private String TAG = RankingEnvironment.class.getSimpleName();
-    MyGdxGame game;
+    Shisen game;
     List<ResultData> resultList;
     List<ResultData> showList;
     String SCREEN_MODE;
     String viewMode;
     String crntVMode;
 
-    RankingEnvironment(MyGdxGame game) {
+    RankingEnvironment(Shisen game) {
         Gdx.app.log(TAG, "constractor");
         this.game = game;
         SCREEN_MODE = Config.NO_SLCT;

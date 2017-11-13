@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.mygdx.game.item.Config;
-import com.mygdx.game.main.MyGdxGame;
+import com.mygdx.game.main.Shisen;
 
 /**
  * ゲーム画面。
@@ -22,7 +22,7 @@ public class PlayScreen extends ScreenAdapter {
     TextButton resultButton;
     PlayEnvironment env;
 
-    public PlayScreen(MyGdxGame game, String mode) {
+    public PlayScreen(Shisen game, String mode) {
         Gdx.app.log(TAG, "Constructor in Play");
         // 環境設定読み込み(モード選択)
         env = new PlayEnvironment(game, mode);

@@ -5,8 +5,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
-import com.mygdx.game.main.MyGdxGame;
+import com.mygdx.game.main.Shisen;
 import com.mygdx.game.item.Config;
 
 /**
@@ -17,12 +16,11 @@ public class ResultScreen extends ScreenAdapter {
     private String TAG = ResultScreen.class.getSimpleName();
     Stage stage;
     Label finishedTime;
-    TextField inputName;
     TextButton goTitle;
     TextButton goRanking;
     ResultEnvironment env;
 
-    public ResultScreen(MyGdxGame game, String gameMode, long elapsedTime) {
+    public ResultScreen(Shisen game, String gameMode, long elapsedTime) {
         Gdx.app.log(TAG, "constructor in Result");
         env = new ResultEnvironment(game, gameMode, elapsedTime);
         finishedTime = env.getTimeLabel();

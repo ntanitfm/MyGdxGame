@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.item.Config;
 import com.mygdx.game.license.LicenseScreen;
-import com.mygdx.game.main.MyGdxGame;
+import com.mygdx.game.main.Shisen;
 import com.mygdx.game.play.PlayScreen;
 import com.mygdx.game.ranking.RankingScreen;
 
@@ -30,9 +30,9 @@ import static com.mygdx.game.item.Config.*;
 
 class TitleEnvironment {
     private String TAG = TitleEnvironment.class.getSimpleName();
-    MyGdxGame game;
+    Shisen game;
 
-    TitleEnvironment(MyGdxGame game) {
+    TitleEnvironment(Shisen game) {
         Gdx.app.log(TAG, "Construct in titleEnv");
         this.game = game;
     }

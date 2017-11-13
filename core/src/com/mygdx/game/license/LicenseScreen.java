@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.mygdx.game.item.Config;
-import com.mygdx.game.main.MyGdxGame;
+import com.mygdx.game.main.Shisen;
 
 /**
  * Created by ntani on 2017/11/10.
@@ -15,12 +15,12 @@ import com.mygdx.game.main.MyGdxGame;
 public class LicenseScreen extends ScreenAdapter {
     String TAG = LicenseScreen.class.getSimpleName();
     LicenseEnvironment env;
-    MyGdxGame game;
+    Shisen game;
     Stage stage;
     TextButton titleButton;
     Table table;
 
-    public LicenseScreen(MyGdxGame game) {
+    public LicenseScreen(Shisen game) {
         this.game = game;
         this.env = new LicenseEnvironment(game);
         this.titleButton = env.getTitleButton();
