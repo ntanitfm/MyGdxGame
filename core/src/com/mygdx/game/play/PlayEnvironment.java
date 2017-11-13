@@ -3,6 +3,8 @@ package com.mygdx.game.play;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.mygdx.game.item.Config;
@@ -24,14 +26,14 @@ import java.util.List;
 class PlayEnvironment {
     private String TAG = PlayEnvironment.class.getSimpleName();
     MyGdxGame game;
-    Table table;                    // 牌を並べるテーブル
-    Pai slctedPai;                  // 選択された牌
-    PlayJudgement jdg;              // 条件判定クラス
-    PlayConf pcnf;                  // モードごとの牌の設定
-    List<Pai> paiList;              // 牌の配置
-    String mode;                    // モード記録用
-    long startTime;                 // 時間記録用
-    boolean isJudging;              // 処理ロック用のフラグ
+    Table table;                        // 牌を並べるテーブル
+    Pai slctedPai;                      // 選択された牌
+    PlayJudgement jdg;                  // 条件判定クラス
+    PlayConf plycnf;                      // モードごとの牌の設定
+    List<Pai> paiList;                  // 牌の配置
+    ButtonGroup<ImageButton> paiGroup;  // 牌の制御用
+    String mode;                        // モード記録用
+    long startTime;                     // 時間記録用
 
     // 環境設定
     PlayEnvironment(MyGdxGame game, String mode) {
@@ -39,7 +41,7 @@ class PlayEnvironment {
         this.game = game;
         this.mode = mode;
         // 難易度ごとに牌を配置
-        pcnf = new PlayConf(mode);
+        plycnf = new PlayConf(mode);
         commonEnvConf();
     }
 
@@ -48,22 +50,26 @@ class PlayEnvironment {
         // 開始時刻記録
         startTime = System.currentTimeMillis();
         // 条件判定用クラス
-        jdg = new PlayJudgement(pcnf.ROWS, pcnf.COLS);
+        jdg = new PlayJudgement(plycnf.ROWS, plycnf.COLS);
         // テーブル設置
         table = new Table(Config.skin);
         table.setFillParent(true);
         // 牌一覧・状態を格納するリスト
         paiList = new ArrayList<Pai>();
-        for (int i = 0; i < pcnf.ROWS; i++) {
-            table.row();
-            for (int j = 0; j < pcnf.COLS; j++) {
-                // @TODO 位置情報をPosIdとして登録し、Positionクラスを削除する.
-                Pai tmpPai = new Pai(pcnf.paiTypeList.remove(0), i, j);
-//                Gdx.app.log(TAG, "sat pai = " + tmpPai.position + ", type = " + tmpPai.type);
+        // 牌制御用
+        paiGroup = new ButtonGroup<ImageButton>();
+        paiGroup.setMinCheckCount(0);
+        paiGroup.setMaxCheckCount(2);
+        // 牌配置
+        for (int i = 0; i < plycnf.ROWS; i++) {
+            for (int j = 0; j < plycnf.COLS; j++) {
+                Pai tmpPai = new Pai(plycnf.paiTypeList.remove(0), i, j);
+                paiGroup.add(tmpPai.imgButton);
                 paiList.add(tmpPai);
                 setPaiListener(tmpPai);
-                table.add(tmpPai.imgButton).width(pcnf.PAI_WIDTH).height(pcnf.PAI_HEIGHT);
+                table.add(tmpPai.imgButton).width(plycnf.PAI_WIDTH).height(plycnf.PAI_HEIGHT);
             }
+            table.row();
         }
     }
 
@@ -78,27 +84,15 @@ class PlayEnvironment {
                 if (slctedPai == null){
                     Gdx.app.log(TAG, "no exist selected Pai");
                     slctedPai = pai;
-                    Gdx.app.log(TAG, "slctedPai = " + slctedPai);
                 }
                 // 同じ牌を選択したときは、直近の牌を削除
                 else if (slctedPai.equals(pai)) {
                     Gdx.app.log(TAG, "equal Pai pressed");
                     slctedPai = null;
-                    Gdx.app.log(TAG, "slctedPai = " + slctedPai);
                 }
                 // 異なる牌
                 else {
                     Gdx.app.log(TAG, "diff pai selected");
-                    // ロック機構
-                    if(isJudging) {
-                        // 他のjudgeが進行中なら、何もせず終了
-                        Gdx.app.log(TAG, "conflict occurred");
-                        return true;
-                    }
-                    else {
-                        // ロックをかける
-                        isJudging = true;
-                    }
                     // 同じタイプの牌が選択された場合、条件判定
                     if (slctedPai.sameType(pai) && jdg.delJudgemnt(pai, slctedPai, paiList)) {
                         // 牌の無力化
@@ -116,7 +110,7 @@ class PlayEnvironment {
                     // 直前の選択牌を無効化
                     slctedPai = pai;
                 }
-                isJudging = false;
+                Gdx.app.log(TAG, "slctedPai = " + slctedPai);
                 return true;
             }
         });
