@@ -2,14 +2,11 @@ package com.mygdx.game.play;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.mygdx.game.item.Config;
 import com.mygdx.game.main.MyGdxGame;
-import com.mygdx.game.result.ResultScreen;
-import com.mygdx.game.title.TitleScreen;
 
 /**
  * ゲーム画面。
@@ -19,21 +16,16 @@ import com.mygdx.game.title.TitleScreen;
 
 public class PlayScreen extends ScreenAdapter {
     String TAG = PlayScreen.class.getSimpleName();
-    MyGdxGame game;
     Stage stage;
     Table playTable;
     TextButton titleButton;
     TextButton resultButton;
-    PlayEnvironmant env;
-    long startTime;
+    PlayEnvironment env;
 
     public PlayScreen(MyGdxGame game, String mode) {
         Gdx.app.log(TAG, "Constructor in Play");
-        this.game = game;
-        // 開始時刻記録
-        startTime = System.currentTimeMillis();
         // 環境設定読み込み(モード選択)
-        env = new PlayEnvironmant(mode);
+        env = new PlayEnvironment(game, mode);
         // テキストボタン
         titleButton = env.getTitleButton();
         resultButton = env.getResultButton();
@@ -52,38 +44,14 @@ public class PlayScreen extends ScreenAdapter {
         stage.addActor(playTable);
     }
 
-    private void update() {
-        if(env.SCREEN_MODE != Config.NO_SLCT) {
-            String mode = env.SCREEN_MODE;
-            Gdx.app.log(TAG, "change to Screen :" + mode);
-            if(mode.equals(Config.TITL)) {
-                game.setScreen(new TitleScreen(this.game));
-            }
-            if(mode.equals(Config.RSLT)) {
-                game.setScreen(new ResultScreen(this.game, env.SCREEN_MODE, System.currentTimeMillis() - startTime));
-            }
-        }
-    }
-
-    private void draw() {
-//        Gdx.app.log(TAG, "draw");
-        GL20 gl = Gdx.gl;
-        gl.glClearColor(1, 1, 1, 1);
-        gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        Config.camera.update();
-        Config.batcher.setProjectionMatrix(Config.camera.combined);
+    @Override
+    public void render(float delta) {
+        Config.drawRoutine();
         // 描画処理
         Config.batcher.begin();
         this.stage.act();
         this.stage.draw();
         Config.batcher.end();
-    }
-
-    @Override
-    public void render(float delta) {
-//        Gdx.app.log(TAG, "render");
-        update();
-        draw();
     }
 
     @Override
