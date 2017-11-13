@@ -5,9 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -33,14 +31,10 @@ import static com.mygdx.game.item.Config.*;
 class TitleEnvironment {
     private String TAG = TitleEnvironment.class.getSimpleName();
     MyGdxGame game;
-    Stage stage;
 
     TitleEnvironment(MyGdxGame game) {
         Gdx.app.log(TAG, "Construct in titleEnv");
         this.game = game;
-        // ステージ生成
-        stage = new Stage(Config.viewport);
-        Gdx.input.setInputProcessor(stage);
     }
 
     // タイトル回転牌

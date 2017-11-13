@@ -2,6 +2,7 @@ package com.mygdx.game.title;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -18,6 +19,7 @@ import com.mygdx.game.main.MyGdxGame;
 public class TitleScreen extends ScreenAdapter {
     String TAG = TitleScreen.class.getSimpleName();
     TitleEnvironment env;
+    Stage stage;
     Image titlePai;
     TextButton easyButton;
     TextButton normalButton;
@@ -42,12 +44,15 @@ public class TitleScreen extends ScreenAdapter {
     @Override
     public void show() {
         Gdx.app.log(TAG, "show");
+        // ステージ生成
+        stage = new Stage(Config.viewport);
+        Gdx.input.setInputProcessor(stage);
         // ウィジェット追加
-        env.stage.addActor(titlePai);
-        env.stage.addActor(easyButton);
-        env.stage.addActor(normalButton);
-        env.stage.addActor(rankingButton);
-        env.stage.addActor(info);
+        stage.addActor(titlePai);
+        stage.addActor(easyButton);
+        stage.addActor(normalButton);
+        stage.addActor(rankingButton);
+        stage.addActor(info);
     }
 
     @Override
@@ -55,8 +60,8 @@ public class TitleScreen extends ScreenAdapter {
         Config.drawRoutine();
         // ここに描画処理
         Config.batcher.begin();
-        env.stage.act();
-        env.stage.draw();
+        stage.act();
+        stage.draw();
         Config.batcher.end();
     }
 }

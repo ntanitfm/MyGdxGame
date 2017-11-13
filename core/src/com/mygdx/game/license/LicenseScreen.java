@@ -1,11 +1,10 @@
 package com.mygdx.game.license;
 
-        import com.badlogic.gdx.Gdx;
-        import com.badlogic.gdx.ScreenAdapter;
-        import com.badlogic.gdx.graphics.GL20;
-        import com.badlogic.gdx.scenes.scene2d.Stage;
-        import com.mygdx.game.item.Config;
-        import com.mygdx.game.main.MyGdxGame;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.mygdx.game.item.Config;
+import com.mygdx.game.main.MyGdxGame;
 
 /**
  * Created by ntani on 2017/11/10.
@@ -23,25 +22,15 @@ public class LicenseScreen extends ScreenAdapter {
     @Override
     public void show() {
         Gdx.app.log(TAG, "show");
+        // ステージ生成
         stage = new Stage(Config.viewport);
+        Gdx.input.setInputProcessor(stage);
+        // ウィジェット追加
     }
 
     @Override
     public void render(float delta) {
-        update();
-        draw();
-    }
-
-    private void update() {
-
-    }
-    private void draw() {
-//        Gdx.app.log(TAG, "draw");
-        GL20 gl = Gdx.gl;
-        gl.glClearColor(0, 1, 1, 1);
-        gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        Config.camera.update();
-        Config.batcher.setProjectionMatrix(Config.camera.combined);
+        Config.drawRoutine();
         Config.batcher.begin();
         stage.act();
         stage.draw();

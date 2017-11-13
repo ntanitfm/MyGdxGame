@@ -8,8 +8,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.rotateBy;
-
 /**
  * プログラム中に広範に用いられる変数群。
  * インスタンス化を行わずに使用する。
@@ -18,21 +16,21 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.rotateBy;
 
 public class Config {
     // 独立変数
-    final static public float SCRN_WIDTH            = 1280;
-    final static public float SCRN_HEIGHT           = 800;
-    final static public float TTL_PAI_WIDTH         = 155;
-    final static public float TTL_PAI_HEIGHT        = 222;
-    final static public float TTL_PAI_ROTATE_SPD    = 2;
-    final static public float TXTBTN_WIDTH_L = 300;
-    final static public float TXTBTN_WIDTH_M = 150;
-    final static public float TXTBTN_WIDTH_S = 100;
-    final static public float TXTBTN_HEIGHT = 50;
+    final static public float SCRN_WIDTH            = 1280;     // 仮想スクリーンの幅
+    final static public float SCRN_HEIGHT           = 800;      // 仮想スクリーンの高さ
+    final static public float TTL_PAI_WIDTH         = 155;      // タイトル牌の幅
+    final static public float TTL_PAI_HEIGHT        = 222;      // タイトル牌の高さ
+    final static public float TTL_PAI_ROTATE_SPD    = 2;        // タイトル牌の回転速度
+    final static public float TXTBTN_WIDTH_L        = 300;      // ボタン幅サイズ(大)
+    final static public float TXTBTN_WIDTH_M        = 150;      // ボタン幅サイズ(中)
+    final static public float TXTBTN_WIDTH_S        = 100;      // ボタン幅サイズ(小)
+    final static public float TXTBTN_HEIGHT         = 50;       // ボタンの高さ
     // 従属変数
     final static public float SCRN_WIDTH_CTR        = SCRN_WIDTH / 2;
     final static public float SCRN_HEIGHT_CTR       = SCRN_HEIGHT / 2;
     final static public float TTL_PAI_WIDTH_CTR     = TTL_PAI_WIDTH / 2;
     final static public float TTL_PAI_HEIGHT_CTR    = TTL_PAI_HEIGHT / 2;
-    final static public float TXTBTN_WIDTH_L_CTR = TXTBTN_WIDTH_L / 2;
+    final static public float TXTBTN_WIDTH_L_CTR    = TXTBTN_WIDTH_L / 2;
     final static public float TTL_TXTBTN_HEIGHT_CTR = TXTBTN_HEIGHT / 2;
     // 状態名
     final static public String NO_SLCT              = "NO_SELECTED";
