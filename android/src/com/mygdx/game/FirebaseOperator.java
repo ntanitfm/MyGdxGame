@@ -31,8 +31,6 @@ public class FirebaseOperator implements DatabaseOperator {
 
     public FirebaseOperator() {
         Log.i(TAG, "constructor");
-        dbRef = FirebaseDatabase.getInstance().getReference("Results");
-        Log.i(TAG, "constructor");
         // Firebaseインスタンス
         dbRef = FirebaseDatabase.getInstance().getReference("Results");
         // データ読み込み(リスナー)
