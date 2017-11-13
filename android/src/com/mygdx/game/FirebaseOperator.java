@@ -62,6 +62,9 @@ public class FirebaseOperator implements DatabaseOperator {
     public List<ResultData> read() {
         Log.i(TAG, "read called");
 //        dbRef.addListenerForSingleValueEvent(vel);
+        if (resultList == null) {
+            return new ArrayList<>();
+        }
         // 並べ替え
         Collections.sort(resultList, new Comparator<ResultData>() {
             @Override
