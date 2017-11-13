@@ -34,7 +34,6 @@ class TitleEnvironment {
     private String TAG = TitleEnvironment.class.getSimpleName();
     MyGdxGame game;
     Stage stage;
-    String GAMEMODE;
 
     TitleEnvironment(MyGdxGame game) {
         Gdx.app.log(TAG, "Construct in titleEnv");
@@ -42,7 +41,6 @@ class TitleEnvironment {
         // ステージ生成
         stage = new Stage(Config.viewport);
         Gdx.input.setInputProcessor(stage);
-        GAMEMODE = Config.NO_SLCT;
     }
 
     // タイトル回転牌
@@ -87,7 +85,7 @@ class TitleEnvironment {
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
                 String gamemode = txtBtn.getText().toString();
-                Gdx.app.log(TAG, "GAMEMODE = " + gamemode);
+                Gdx.app.log(TAG, "gameMode = " + gamemode);
                 // ゲームモードへの遷移
                 if(gamemode.equals(Config.PLAY_LV1) || gamemode.equals(Config.PLAY_LV2)) {
                     game.setScreen(new PlayScreen(game, gamemode));

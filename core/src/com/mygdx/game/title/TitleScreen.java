@@ -7,8 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.mygdx.game.item.Config;
 import com.mygdx.game.main.MyGdxGame;
-import com.mygdx.game.play.PlayScreen;
-import com.mygdx.game.ranking.RankingScreen;
 
 /**
  * タイトル画面
@@ -19,7 +17,6 @@ import com.mygdx.game.ranking.RankingScreen;
 
 public class TitleScreen extends ScreenAdapter {
     String TAG = TitleScreen.class.getSimpleName();
-    MyGdxGame game;
     TitleEnvironment env;
     Image titlePai;
     TextButton easyButton;
@@ -30,7 +27,6 @@ public class TitleScreen extends ScreenAdapter {
     // 部品生成
     public TitleScreen(MyGdxGame game) {
         Gdx.app.log(TAG, "Constructor in Title");
-        this.game = game;
         env = new TitleEnvironment(game);
         // 中央回転牌
         titlePai = env.getTitlePai();
