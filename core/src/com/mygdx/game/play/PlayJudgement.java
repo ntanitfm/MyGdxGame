@@ -124,6 +124,11 @@ class PlayJudgement {
         return pos.y * COLS + pos.x;
     }
 
+    // 位置 -> id
+    int posToId(int y, int x) {
+        return y * COLS + x;
+    }
+
     // エリア内か判定
     private boolean isArea(Position pos) {
         if(-1 <= pos.y && pos.y <= ROWS)
