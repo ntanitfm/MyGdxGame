@@ -3,6 +3,7 @@ package com.mygdx.game.license;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.mygdx.game.item.Config;
 import com.mygdx.game.main.MyGdxGame;
 
@@ -12,11 +13,15 @@ import com.mygdx.game.main.MyGdxGame;
 
 public class LicenseScreen extends ScreenAdapter {
     String TAG = LicenseScreen.class.getSimpleName();
+    LicenseEnvironment env;
     MyGdxGame game;
     Stage stage;
+    TextButton titleButton;
 
     public LicenseScreen(MyGdxGame game) {
         this.game = game;
+        this.env = new LicenseEnvironment(game);
+        this.titleButton = env.getTitleButton();
     }
 
     @Override
@@ -26,6 +31,7 @@ public class LicenseScreen extends ScreenAdapter {
         stage = new Stage(Config.viewport);
         Gdx.input.setInputProcessor(stage);
         // ウィジェット追加
+        stage.addActor(titleButton);
     }
 
     @Override

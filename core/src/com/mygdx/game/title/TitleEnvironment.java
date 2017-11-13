@@ -73,7 +73,7 @@ class TitleEnvironment {
         return imgBtn;
     }
 
-    // Play or Rankingスクリーン遷移用リスナー
+    // スクリーン遷移用リスナー
     private void setBtnListener(final TextButton txtBtn) {
         txtBtn.addListener(new InputListener() {
             @Override
@@ -84,7 +84,7 @@ class TitleEnvironment {
                 if(gamemode.equals(Config.PLAY_LV1) || gamemode.equals(Config.PLAY_LV2)) {
                     game.setScreen(new PlayScreen(game, gamemode));
                 }
-                // ランキング画面へ
+                // ランキング画面へ遷移
                 else if(gamemode.equals(Config.RANK)) {
                     game.setScreen(new RankingScreen(game));
                 }
