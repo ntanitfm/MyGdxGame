@@ -15,7 +15,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 public class Pai {
     private String TAG = Pai.class.getSimpleName();
     public Position position;
-    public int posId;               // 位置情報
     public String type;
     public boolean invisible;       // 牌が除去されているか
     public ImageButton imgButton;   // イメージボタン
@@ -27,7 +26,7 @@ public class Pai {
         this.imgButton = generateImageButton(type);
     }
 
-    // 同じ牌であるかの判定
+    // 同じ種の牌であるかの判定
     public boolean sameType(Pai pai) {
         if(this.type.equals(pai.type)) return true;
         return false;
