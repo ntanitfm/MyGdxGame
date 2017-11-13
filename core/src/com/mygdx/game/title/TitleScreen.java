@@ -34,7 +34,6 @@ public class TitleScreen extends ScreenAdapter {
     TextButton normalButton;
     TextButton rankingButton;
     ImageButton info;
-    Dialog license;
 
     // 部品生成
     public TitleScreen(MyGdxGame game) {

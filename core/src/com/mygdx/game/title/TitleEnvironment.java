@@ -79,13 +79,9 @@ class TitleEnvironment {
 
     // ダイアログ設定
     Dialog getLicense() {
-        float width = 800f;
-        float height = 600f;
         Dialog dialog = new Dialog(Config.license, Config.skin);
         TextButton btn = new TextButton("OK", Config.skin);
         dialog.button(btn);
-        dialog.setSize(width, height);
-        dialog.setPosition(Config.SCRN_WIDTH_CTR - width / 2, Config.SCRN_HEIGHT_CTR - height / 2);
         return dialog;
     }
 
@@ -104,7 +100,11 @@ class TitleEnvironment {
         txtBtn.addListener(new InputListener() {
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                float width = 800f;
+                float height = 600f;
                 dlg.show(stage);
+                dlg.setSize(width, height);
+                dlg.setPosition(Config.SCRN_WIDTH_CTR - width / 2, Config.SCRN_HEIGHT_CTR - height / 2);
                 return true;
             }
         });
