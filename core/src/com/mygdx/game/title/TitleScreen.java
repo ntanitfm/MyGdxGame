@@ -54,34 +54,13 @@ public class TitleScreen extends ScreenAdapter {
         env.stage.addActor(info);
     }
 
-    // スクリーン遷移
-    private void update() {
-        if (env.GAMEMODE != Config.NO_SLCT) {
-            Gdx.app.log(TAG, "change to mode :" + env.GAMEMODE);
-            // ゲームモードへの遷移
-            if(env.GAMEMODE.equals(Config.PLAY_LV1) || env.GAMEMODE.equals(Config.PLAY_LV2)) {
-                game.setScreen(new PlayScreen(this.game, env.GAMEMODE));
-            }
-            // ランキング画面へ
-            else if(env.GAMEMODE.equals(Config.RANK)) {
-                game.setScreen(new RankingScreen(this.game));
-            }
-        }
-    }
-
-    private void draw() {
-//        Gdx.app.log(TAG, "draw");
+    @Override
+    public void render(float delta) {
         Config.drawRoutine();
         // ここに描画処理
         Config.batcher.begin();
         env.stage.act();
         env.stage.draw();
         Config.batcher.end();
-    }
-
-    @Override
-    public void render(float delta) {
-        update();
-        draw();
     }
 }

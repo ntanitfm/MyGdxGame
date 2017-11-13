@@ -15,6 +15,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.item.Config;
 import com.mygdx.game.license.LicenseScreen;
 import com.mygdx.game.main.MyGdxGame;
+import com.mygdx.game.play.PlayScreen;
+import com.mygdx.game.ranking.RankingScreen;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.rotateBy;
 import static com.mygdx.game.item.Config.*;
@@ -79,13 +81,21 @@ class TitleEnvironment {
         return imgBtn;
     }
 
-    // リスナー設定
+    // Play or Rankingスクリーン遷移用リスナー
     private void setBtnListener(final TextButton txtBtn) {
         txtBtn.addListener(new InputListener() {
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                GAMEMODE = txtBtn.getText().toString();
-                Gdx.app.log(TAG, "GAMEMODE = " + GAMEMODE);
+                String gamemode = txtBtn.getText().toString();
+                Gdx.app.log(TAG, "GAMEMODE = " + gamemode);
+                // ゲームモードへの遷移
+                if(gamemode.equals(Config.PLAY_LV1) || gamemode.equals(Config.PLAY_LV2)) {
+                    game.setScreen(new PlayScreen(game, gamemode));
+                }
+                // ランキング画面へ
+                else if(gamemode.equals(Config.RANK)) {
+                    game.setScreen(new RankingScreen(game));
+                }
                 return true;
             }
         });
