@@ -72,17 +72,13 @@ class TitleEnvironment {
         // イメージボタン作成
         ImageButton imgBtn = new ImageButton(txrDrawable);
         imgBtn.setBounds(10, Config.SCRN_HEIGHT - height - 10, width, height);
-        // リスナー作成
-        setInfoListener(imgBtn, getLicense());
-        return imgBtn;
-    }
-
-    // ダイアログ設定
-    Dialog getLicense() {
+        // ダイアログ作成
         Dialog dialog = new Dialog(Config.license, Config.skin);
         TextButton btn = new TextButton("OK", Config.skin);
         dialog.button(btn);
-        return dialog;
+        // リスナー設定
+        setInfoListener(imgBtn, dialog);
+        return imgBtn;
     }
 
     // リスナー設定
