@@ -20,10 +20,9 @@ public class Pai {
     public boolean invisible;       // 牌が除去されているか
     public ImageButton imgButton;   // イメージボタン
 
-    public Pai(String type, int y, int x, int posId) {
+    public Pai(String type, int y, int x) {
         this.position = new Position(y, x);
         this.type = type;
-        this.posId = posId;
         this.invisible = false;
         this.imgButton = generateImageButton(type);
     }

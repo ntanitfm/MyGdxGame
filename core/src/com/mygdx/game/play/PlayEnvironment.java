@@ -64,7 +64,7 @@ class PlayEnvironment {
             table.row();
             for (int j = 0; j < pcnf.COLS; j++) {
                 // @TODO 位置情報をPosIdとして登録し、Positionクラスを削除する.
-                Pai tmpPai = new Pai(pcnf.paiTypeList.remove(0), i, j, jdg.posToId(i, j));
+                Pai tmpPai = new Pai(pcnf.paiTypeList.remove(0), i, j);
                 paiGroup.add(tmpPai.imgButton);
                 paiList.add(tmpPai);
                 setPaiListener(tmpPai);
