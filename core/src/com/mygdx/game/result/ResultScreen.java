@@ -26,7 +26,6 @@ public class ResultScreen extends ScreenAdapter {
         Gdx.app.log(TAG, "constructor in Result");
         env = new ResultEnvironment(game, gameMode, elapsedTime);
         finishedTime = env.getTimeLabel();
-//        inputName = env.getInputField();
         goTitle = env.getTitleButton();
         goRanking = env.getRankingButton();
     }
@@ -37,7 +36,6 @@ public class ResultScreen extends ScreenAdapter {
         //  ステージ生成
         stage = new Stage(Config.viewport);
         stage.addActor(finishedTime);
-//        stage.addActor(inputName);
         stage.addActor(goTitle);
         stage.addActor(goRanking);
         Gdx.input.setInputProcessor(stage);

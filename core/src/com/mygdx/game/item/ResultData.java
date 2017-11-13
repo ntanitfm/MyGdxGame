@@ -13,9 +13,9 @@ public class ResultData {
     // Firebase用の空のコンストラクタ
     public ResultData() {}
 
-    public ResultData(String mode, long time) {
+    public ResultData(String mode, long time, String name) {
         this.mode = mode;
-        this.name = " ***** ";
+        this.name = name;
         this.time = time;
     }
 

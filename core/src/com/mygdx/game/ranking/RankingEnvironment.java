@@ -44,7 +44,6 @@ class RankingEnvironment {
         table.padRight(100f);
         table.setFillParent(true);
         Label rankingMode = getModeLabel(viewMode);
-//        table.setDebug(true);
         table.add(rankingMode).colspan(3).fillX();
         int number = 1;
         for(ResultData rd : showList) {

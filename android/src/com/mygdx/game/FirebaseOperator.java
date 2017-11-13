@@ -54,8 +54,8 @@ public class FirebaseOperator implements DatabaseOperator {
         Log.i(TAG, "constructor finished");
     }
     @Override
-    public void write(ResultData res) {
-        Log.i(TAG, "write called");
+    public void push(ResultData res) {
+        Log.i(TAG, "push called");
         dbRef.push().setValue(res);
     }
     @Override

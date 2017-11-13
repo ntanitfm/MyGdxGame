@@ -11,7 +11,7 @@ import java.util.List;
  * 各プラットフォームに依存しない
  * 抽象化されたインターフェイス
  *
- * @func write
+ * @func push
  * データベース上にResultDataの内容を書き込み
  *
  * @func read()
@@ -22,6 +22,6 @@ import java.util.List;
  */
 
 public interface DatabaseOperator {
-    void write(ResultData res);
+    void push(ResultData res);
     List<ResultData> read();
 }

@@ -53,9 +53,9 @@ public class RankingScreen extends ScreenAdapter {
     void update() {
         // 画面に変更があれば、画面を更新
         if(env.isRankingChangeed()) {
-            stage.clear();
-            rankTable = env.getTable();
-            show();
+            rankTable.remove();
+            rankTable =  env.getTable();
+            stage.addActor(rankTable);
         }
     }
     void draw() {
