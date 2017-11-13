@@ -1,4 +1,6 @@
 package com.mygdx.game.result;
+
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -7,6 +9,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.mygdx.game.item.Config;
 import com.mygdx.game.item.ResultData;
 import com.mygdx.game.main.DatabaseOperator;
+import com.mygdx.game.main.MyGdxGame;
+import com.mygdx.game.ranking.RankingScreen;
+import com.mygdx.game.title.TitleScreen;
 
 
 /**
@@ -14,14 +19,15 @@ import com.mygdx.game.main.DatabaseOperator;
  */
 
 class ResultEnvironment {
+    private String TAG = ResultEnvironment.class.getSimpleName();
+    MyGdxGame game;
     DatabaseOperator dbo;
     ResultData rd;
-    String SCREEN_MODE;
 
-    ResultEnvironment(String gameMode, long elapsedTime, DatabaseOperator dbo) {
+    ResultEnvironment(MyGdxGame game, String gameMode, long elapsedTime) {
+        this.game = game;
         rd = new ResultData(gameMode, elapsedTime);
-        this.dbo = dbo;
-        this.SCREEN_MODE = Config.NO_SLCT;
+        this.dbo = game.dbo;
     }
 
     // screenからもらってきたtimeを自動で取得
@@ -31,10 +37,12 @@ class ResultEnvironment {
         Label label = new Label(rd.generateSec(), Config.skin);
         label.setFontScale(5);
         label.setSize(width, height);
+        label.setColor(0,0,0,1);
         label.setPosition(Config.SCRN_WIDTH_CTR - width / 2, Config.SCRN_HEIGHT_CTR - height / 2);
         return label;
     }
 
+    // 名前入力用フィールド
     TextField getInputField() {
         float width = 300f;
         float height = 80f;
@@ -55,7 +63,7 @@ class ResultEnvironment {
         setBtnListener(txtBtn);
         return txtBtn;
     }
-    // ランキング画面へ
+    // ランキング画面ボタン
     TextButton getRankingButton() {
         float width = Config.TXTBTN_WIDTH_M;
         float height = Config.TXTBTN_HEIGHT;
@@ -66,12 +74,19 @@ class ResultEnvironment {
         return txtBtn;
     }
 
-    // ボタン名をそのままSCREEN_MODEへ渡すリスナー
+    // 画面遷移用リスナー
     private void setBtnListener(final TextButton txtBtn) {
         txtBtn.addListener(new InputListener() {
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                SCREEN_MODE = txtBtn.getText().toString();
+                String mode = txtBtn.getText().toString();
+                Gdx.app.log(TAG, "change to Screen :" + mode);
+                if(mode.equals(Config.TITL)) {
+                    game.setScreen(new TitleScreen(game));
+                }
+                if(mode.equals(Config.RANK)) {
+                    game.setScreen(new RankingScreen(game));
+                }
                 return true;
             }
         });
