@@ -68,11 +68,7 @@ public class RankingScreen extends ScreenAdapter {
     }
     void draw() {
 //        Gdx.app.log(TAG, "draw");
-        GL20 gl = Gdx.gl;
-        gl.glClearColor(1, 1, 1, 1);
-        gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        Config.camera.update();
-        Config.batcher.setProjectionMatrix(Config.camera.combined);
+        Config.drawRoutine();
         // 描画処理
         Config.batcher.begin();
         this.stage.act();
