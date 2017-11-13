@@ -9,7 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.item.Config;
 import com.mygdx.game.item.ResultData;
-import com.mygdx.game.main.DatabaseOperator;
+import com.mygdx.game.main.MyGdxGame;
+import com.mygdx.game.title.TitleScreen;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,23 +21,23 @@ import java.util.List;
 
 class RankingEnvironment {
     private String TAG = RankingEnvironment.class.getSimpleName();
-    DatabaseOperator dbo;
+    MyGdxGame game;
     List<ResultData> resultList;
     List<ResultData> showList;
     String SCREEN_MODE;
     String viewMode;
     String crntVMode;
 
-    RankingEnvironment(DatabaseOperator dbo) {
+    RankingEnvironment(MyGdxGame game) {
         Gdx.app.log(TAG, "constractor");
-        this.dbo = dbo;
+        this.game = game;
         SCREEN_MODE = Config.NO_SLCT;
         crntVMode = viewMode = Config.PLAY_LV1;
     }
 
     Table getTable() {
         Gdx.app.log(TAG, "getTable called");
-        resultList = dbo.read();
+        resultList = game.dbo.read();
         showList = getByKey(viewMode);
         Table table = new Table();
         table.padLeft(100f);
@@ -141,7 +142,10 @@ class RankingEnvironment {
         txtBtn.addListener(new InputListener() {
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                SCREEN_MODE = txtBtn.getText().toString();
+                String mode = txtBtn.getText().toString();
+                if(mode.equals(Config.TITL)) {
+                    game.setScreen(new TitleScreen(game));
+                }
                 return true;
             }
         });

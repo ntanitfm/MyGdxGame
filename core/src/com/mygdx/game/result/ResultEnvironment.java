@@ -80,15 +80,15 @@ class ResultEnvironment {
         txtBtn.addListener(new InputListener() {
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                String mode = txtBtn.getText().toString();
-                Gdx.app.log(TAG, "change to Screen :" + mode);
-                if(mode.equals(Config.TITL)) {
-                    game.setScreen(new TitleScreen(game));
-                }
-                if(mode.equals(Config.RANK)) {
-                    game.setScreen(new RankingScreen(game));
-                }
-                return true;
+            String mode = txtBtn.getText().toString();
+            Gdx.app.log(TAG, "change to Screen :" + mode);
+            if(mode.equals(Config.TITL)) {
+                game.setScreen(new TitleScreen(game));
+            }
+            if(mode.equals(Config.RANK)) {
+                game.setScreen(new RankingScreen(game));
+            }
+            return true;
             }
         });
     }
