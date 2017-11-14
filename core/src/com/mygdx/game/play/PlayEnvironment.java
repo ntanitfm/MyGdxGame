@@ -59,7 +59,7 @@ class PlayEnvironment {
         // 牌制御用
         paiGroup = new ButtonGroup<ImageButton>();
         paiGroup.setMinCheckCount(0);
-        paiGroup.setMaxCheckCount(2);
+        paiGroup.setMaxCheckCount(1);
         // 牌配置
         for (int i = 0; i < plycnf.ROWS; i++) {
             for (int j = 0; j < plycnf.COLS; j++) {
